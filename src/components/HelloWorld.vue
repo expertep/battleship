@@ -2,8 +2,8 @@
   <div class="hello">
     <p>Drag the W3Schools image into the rectangle:</p>
   <table>
-  	<tr v-for="i in 5">
-      	<td v-for="j in 5" :style="" @click="show(j-1,i-1)">
+  	<tr v-for="i in 10">
+      	<td v-for="j in 10" :style="" @click="show(j-1,i-1)">
           <img v-if="showship(j-1,i-1)" src="../assets/ship.png" class="img">
         </td>
     </tr>
@@ -11,10 +11,10 @@
   </table>
   <div class="field is-grouped">
     <div class="control">
-      <button class="button is-link">Submit</button>
+      <button class="button is-link" @click="setship()">Next</button>
     </div>
     <div class="control">
-      <button class="button is-text">Cancel</button>
+      <button class="button is-text" @click="convert">Cancel</button>
     </div>
   </div>
 
@@ -41,12 +41,25 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+var config = {
+  apiKey: 'AIzaSyBc4GvjjmZMezOuv2fc8FOUiPcyttLPmuw',
+  authDomain: 'battleship-d7f88.firebaseapp.com',
+  databaseURL: 'https://battleship-d7f88.firebaseio.com',
+  projectId: 'battleship-d7f88',
+  storageBucket: '',
+  messagingSenderId: '211714676183'
+}
+var firebaseApp = firebase.initializeApp(config)
+var db = firebaseApp.database()
+var shipsetRef = db.ref('boards')
 export default {
   name: 'HelloWorld',
   data () {
     return {
       x: 0,
       y: 0,
+      boardOnplay: '0011',
       hidemenu: [true, true, true],
       position: [
         [
@@ -54,9 +67,7 @@ export default {
           {shipstatus: false},
           {shipstatus: false},
           {shipstatus: false},
-          {shipstatus: false}
-        ],
-        [
+          {shipstatus: false},
           {shipstatus: false},
           {shipstatus: false},
           {shipstatus: false},
@@ -68,9 +79,7 @@ export default {
           {shipstatus: false},
           {shipstatus: false},
           {shipstatus: false},
-          {shipstatus: false}
-        ],
-        [
+          {shipstatus: false},
           {shipstatus: false},
           {shipstatus: false},
           {shipstatus: false},
@@ -78,6 +87,95 @@ export default {
           {shipstatus: false}
         ],
         [
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false}
+        ],
+        [
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false}
+        ],
+        [
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false}
+        ],
+        [
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false}
+        ],
+        [
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false}
+        ],
+        [
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false}
+        ],
+        [
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false}
+        ],
+        [
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
+          {shipstatus: false},
           {shipstatus: false},
           {shipstatus: false},
           {shipstatus: false},
@@ -88,27 +186,44 @@ export default {
     }
   },
   methods: {
-    show (i, j) {
+    show (j, i) {
       for (let x = 0; x < this.x; x++) {
-        if (this.position[j][i + x].shipstatus === true || i + x > 5) {
+        if (this.position[j + x][i].shipstatus || j + x >= 10) {
           return 0
         }
       }
       for (let y = 0; y < this.y; y++) {
-        if (this.position[j + y][i].shipstatus === true || j + y > 5) {
+        if (this.position[j][i + y].shipstatus || i + y >= 10) {
           return 0
         }
       }
       for (let x = 0; x < this.x; x++) {
-        this.position[j][i + x].shipstatus = true
+        this.position[j + x][i].shipstatus = true
       }
       for (let y = 0; y < this.y; y++) {
-        this.position[j + y][i].shipstatus = true
+        this.position[j][i + y].shipstatus = true
       }
       this.hide(this.x + this.y - 3)
     },
-    showship (i, j) {
-      return this.position[j][i].shipstatus
+    convert () {
+      var jsonString = JSON.stringify(this.position)
+      console.log(jsonString)
+    },
+    setship () {
+      for (let y = 0; y < 10; y++) {
+        for (let x = 0; x < 10; x++) {
+          if (this.position[x][y].shipstatus) {
+            shipsetRef.child(this.boardOnplay + '/position/' + y + '/' + x + '/shipstatus').set(true)
+            // this.showconsole(x, y)
+          }
+        }
+      }
+    },
+    showconsole (y, x) {
+      console.log(y + ',' + x)
+    },
+    showship (x, y) {
+      return this.position[x][y].shipstatus
     },
     select (x, y) {
       this.x = x
@@ -118,9 +233,22 @@ export default {
       this.hidemenu[i] = false
     }
   },
-  created () {
+  firebase: {
 
+  },
+  created () {
+    /* for (var i = 0; i < 10; i++) {
+      this.position.push([])
+      this.position[i].push(new Array(10))
+      for (var j = 0; j < 10; j++) {
+        this.position[i][j] = {
+          shipstatus: false
+        }
+        console.log(this.position[i][j].shipstatus)
+      }
+    } */
   }
+
 }
 </script>
 
