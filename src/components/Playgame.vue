@@ -4,24 +4,23 @@
     <div class="columns">
       <div class="column">
         <table>
-          <tr v-for="i in 10">
-              <td v-for="j in 10" :style="" @click="show(j-1,i-1)">
-                <img v-if="showship(j-1,i-1)" src="../assets/ship.png" class="img">
+          <tr v-for="y in getOwn" :key="y['.key']">
+              <td v-for="x in y" :key="x['.key']">
+                <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
               </td>
           </tr>
         </table>
       </div>
       <div class="column">
         <table>
-          <tr v-for="i in 10">
-              <td v-for="j in 10" :style="" @click="show(j-1,i-1)">
-                <img v-if="showship(j-1,i-1)" src="../assets/ship.png" class="img">
+          <tr v-for="y in getEnemy" :key="y['.key']">
+              <td v-for="x in y" :key="x['.key']">
+                <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
               </td>
           </tr>
         </table>
       </div>
     </div>
-
   <div class="field is-grouped">
     <div class="control">
       <button class="button is-link" @click="setship()">Next</button>
@@ -40,6 +39,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Placeship',
   data () {
@@ -47,6 +47,7 @@ export default {
       x: 0,
       y: 0,
       boardOnplay: '0011',
+      ShipEnemy: '',
       hidemenu: [true, true, true],
       position: [
         [
@@ -226,6 +227,7 @@ export default {
   firebase: {
   },
   created () {
+    // this.enemysea = this.getShipEnemy()
     /* for (var i = 0; i < 10; i++) {
       this.position.push([])
       this.position[i].push(new Array(10))
@@ -236,7 +238,12 @@ export default {
         console.log(this.position[i][j].shipstatus)
       }
     } */
-
+  },
+  computed: {
+    ...mapGetters([
+      'getEnemy',
+      'getOwn'
+    ])
   }
 
 }
@@ -260,29 +267,5 @@ export default {
   .ship{
     background-color: rgb(194, 70, 174);
     margin: 10px;
-  }
-  .h2{
-    width: 100px;
-    height: 50px;
-  }
-  .v2{
-    width: 50px;
-    height: 100px;
-  }
-  .h3{
-    width: 150px;
-    height: 50px;
-  }
-  .v3{
-    width: 50px;
-    height: 150px;
-  }
-  .h4{
-    width: 200px;
-    height: 50px;
-  }
-  .v4{
-    width: 50px;
-    height: 200px;
   }
 </style>

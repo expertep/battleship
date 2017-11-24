@@ -18,17 +18,156 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     count: 0,
-    boardOnplay: '0011'
+    boardOnplay: '0011',
+    me: '',
+    enemy: '',
+    position: [
+      [
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false}
+      ],
+      [
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false}
+      ],
+      [
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false}
+      ],
+      [
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false}
+      ],
+      [
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false}
+      ],
+      [
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false}
+      ],
+      [
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false}
+      ],
+      [
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false}
+      ],
+      [
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false}
+      ],
+      [
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false},
+        {shipstatus: false}
+      ]
+    ]
   },
   getters: {
-    getcount (state) {
-      return state.count
+    getEnemy (state) {
+      shipsetRef.child(state.boardOnplay + '/positionB').on('value', function (snapshot) {
+        state.position = snapshot.val()
+      },
+      function (error) {
+        console.log('Error: ' + error.code)
+      })
+      return state.position
+    },
+    getOwn (state) {
+      shipsetRef.child(state.boardOnplay + '/positionA').on('value', function (snapshot) {
+        state.position = snapshot.val()
+      },
+      function (error) {
+        console.log('Error: ' + error.code)
+      })
+      return state.position
     }
   },
   mutations: {},
   actions: {
     setShipFirebase: function (context, xy) {
-      shipsetRef.child(this.state.boardOnplay + '/position/' + xy.y + '/' + xy.x + '/shipstatus').set(true)
+      shipsetRef.child(this.state.boardOnplay + '/positionA/' + xy.y + '/' + xy.x + '/shipstatus').set(true)
     }
   }
 })
