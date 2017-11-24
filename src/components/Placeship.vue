@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <p>Drag the W3Schools image into the rectangle:</p>
+    
   <table>
   	<tr v-for="i in 10">
       	<td v-for="j in 10" :style="" @click="show(j-1,i-1)">
@@ -41,20 +42,8 @@
 </template>
 
 <script>
-import firebase from 'firebase'
-var config = {
-  apiKey: 'AIzaSyBc4GvjjmZMezOuv2fc8FOUiPcyttLPmuw',
-  authDomain: 'battleship-d7f88.firebaseapp.com',
-  databaseURL: 'https://battleship-d7f88.firebaseio.com',
-  projectId: 'battleship-d7f88',
-  storageBucket: '',
-  messagingSenderId: '211714676183'
-}
-var firebaseApp = firebase.initializeApp(config)
-var db = firebaseApp.database()
-var shipsetRef = db.ref('boards')
 export default {
-  name: 'HelloWorld',
+  name: 'Placeship',
   data () {
     return {
       x: 0,
@@ -188,12 +177,12 @@ export default {
   methods: {
     show (j, i) {
       for (let x = 0; x < this.x; x++) {
-        if (this.position[j + x][i].shipstatus || j + x >= 10) {
+        if (j + x >= 10 || this.position[j + x][i].shipstatus) {
           return 0
         }
       }
       for (let y = 0; y < this.y; y++) {
-        if (this.position[j][i + y].shipstatus || i + y >= 10) {
+        if (i + y >= 10 || this.position[j][i + y].shipstatus) {
           return 0
         }
       }
@@ -213,11 +202,14 @@ export default {
       for (let y = 0; y < 10; y++) {
         for (let x = 0; x < 10; x++) {
           if (this.position[x][y].shipstatus) {
-            shipsetRef.child(this.boardOnplay + '/position/' + y + '/' + x + '/shipstatus').set(true)
-            // this.showconsole(x, y)
+            // shipset.child(this.boardOnplay + '/position/' + y + '/' + x + '/shipstatus').set(true)
+            this.showconsole(x, y)
           }
         }
       }
+      this.$router.go({
+        path: '/Playgame'
+      })
     },
     showconsole (y, x) {
       console.log(y + ',' + x)
@@ -236,6 +228,11 @@ export default {
   firebase: {
 
   },
+  computed: {
+    test () {
+      return this.$store.state.count
+    }
+  },
   created () {
     /* for (var i = 0; i < 10; i++) {
       this.position.push([])
@@ -247,6 +244,7 @@ export default {
         console.log(this.position[i][j].shipstatus)
       }
     } */
+
   }
 
 }

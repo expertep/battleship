@@ -6,8 +6,23 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+let config = {
+  apiKey: 'AIzaSyBc4GvjjmZMezOuv2fc8FOUiPcyttLPmuw',
+  authDomain: 'battleship-d7f88.firebaseapp.com',
+  databaseURL: 'https://battleship-d7f88.firebaseio.com',
+  projectId: 'battleship-d7f88',
+  storageBucket: '',
+  messagingSenderId: '211714676183'
+}
+var firebaseApp = firebase.initializeApp(config)
+var db = firebaseApp.database()
+var shipsetRef = db.ref('boards')
 export default {
-  name: 'app'
+  name: 'app',
+  firebase: {
+    shipset: shipsetRef
+  }
 }
 </script>
 
