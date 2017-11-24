@@ -1,17 +1,20 @@
 <template>
   <div class="hello">
-    <p>Drag the W3Schools image into the rectangle:</p>
-    <div class="columns">
-      <div class="column">
+    <h1 class="title has-text-light">Battleship</h1>
+    <h2 class="subtitle has-text-primary">Let fun with me</h2>
+    <div class="columns is-mobile is-centered">
+      <div class="column is-6">
+        <h2 class="subtitle has-text-light">me</h2>
         <table>
           <tr v-for="(y, indexY) in getOwn" :key="y['.key']">
-            <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY)" :class="setClass(x)">
+            <td v-for="(x, indexX) in y" :key="x['.key']" :class="">
               <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
             </td>
           </tr>
         </table>
       </div>
-      <div class="column">
+      <div class="column is-6">
+        <h2 class="subtitle has-text-light">enemy</h2>
         <table>
           <tr v-for="(y, indexY) in getEnemy" :key="y['.key']">
             <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY)" :class="setClass(x)">
@@ -21,18 +24,14 @@
         </table>
       </div>
     </div>
-  <div class="field is-grouped">
-    <div class="control">
-      <button class="button is-link" @click="setship()">Next</button>
+    <br><br>
+    <div class="columns is-mobile is-centered menu">
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-primary is-large" @click="">Finish</button>
+        </div>
+      </div>
     </div>
-    <div class="control">
-      <button class="button is-text" @click="convert">Cancel</button>
-    </div>
-  </div>
-
-
-
-
   <br>
 
   </div>
@@ -46,141 +45,16 @@ export default {
     return {
       x: 0,
       y: 0,
+      score: 0,
       boardOnplay: '0011',
       ShipEnemy: '',
-      hidemenu: [true, true, true],
-      position: [
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ]
-      ]
+      hidemenu: [true, true, true]
     }
   },
   methods: {
     ...mapActions([
       'setbombFirebase'
     ]),
-    convert () {
-      var jsonString = JSON.stringify(this.position)
-      console.log(jsonString)
-    },
     setbomb (x, y) {
       var xy = {
         x: x,
@@ -191,15 +65,13 @@ export default {
     showconsole (x, y) {
       console.log(x + ',' + y)
     },
-    showship (x, y) {
-      return this.position[x][y].shipstatus
-    },
     select (x, y) {
       this.x = x
       this.y = y
     },
     setClass (obj) {
       if (obj.shipstatus && obj.bombstatus) {
+        this.score++
         return 'boom'
       } else if (obj.bombstatus) {
         return 'empty'
@@ -245,8 +117,8 @@ export default {
     height:auto;
   }
   .img {
-    width:50px;
-    height:50px;
+    width:40px;
+    height:40px;
   }
   .ship{
     background-color: rgb(194, 70, 174);

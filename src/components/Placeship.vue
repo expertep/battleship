@@ -1,42 +1,52 @@
 <template>
   <div class="hello">
-    <p>Drag the W3Schools image into the rectangle:</p>
-
-  <table>
-  	<tr v-for="i in 10">
-      	<td v-for="j in 10" :style="" @click="show(j-1,i-1)">
-          <img v-if="showship(j-1,i-1)" src="../assets/ship.png" class="img">
-        </td>
-    </tr>
-
-  </table>
-  <div class="field is-grouped">
-    <div class="control">
-      <button class="button is-link" @click="setship()">Next</button>
+    <div class="container">
+    <h1 class="title has-text-light">Battleship</h1>
+    <h2 class="subtitle has-text-primary">Let fun with me</h2>
+    <div class="columns is-mobile is-centered">
+      <div class="column is-half is-narrow">
+        <table>
+        	<tr v-for="i in 10">
+            	<td v-for="j in 10" :style="" @click="show(j-1,i-1)">
+                <img v-if="showship(j-1,i-1)" src="../assets/ship.png" class="img">
+              </td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="control">
-      <button class="button is-text" @click="convert">Cancel</button>
-    </div>
+  <div class="columns menu">
+    <h1 class="title has-text-white">Select Ship</h1>
   </div>
-
-  <div class="columns">
-    <div class="column" v-if="hidemenu[0]">
+  <div class="columns menu">
+    <div class="column shipmenu" v-if="hidemenu[0]">
+      <h3 class="subtitle has-text-white">เรือเล็ก</h3>
       <div class="ship h2" @click="select(2,1)"></div>
       <div class="ship v2" @click="select(1,2)"></div>
     </div>
-    <div class="column" v-if="hidemenu[1]">
+    <div class="column shipmenu" v-if="hidemenu[1]">
+      <h3 class="subtitle has-text-white">เรือกลาง</h3>
       <div class="ship h3" @click="select(3,1)"></div>
       <div class="ship v3" @click="select(1,3)"></div>
     </div>
-    <div class="column" v-if="hidemenu[2]">
+    <div class="column shipmenu" v-if="hidemenu[2]">
+      <h3 class="subtitle has-text-white">เรือใหญ่</h3>
       <div class="ship h4" @click="select(4,1)"></div>
       <div class="ship v4" @click="select(1,4)"></div>
     </div>
   </div>
-
+  <div class="columns is-mobile is-centered menu">
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-primary is-large" @click="setship()">Next</button>
+      </div>
+      <div class="control">
+        <button class="button is-danger is-large" @click="convert">Cancel</button>
+      </div>
+    </div>
+  </div>
 
   <br>
-
+</div>
   </div>
 </template>
 
@@ -253,7 +263,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   td{
-    border:2px solid rgba(0, 204, 255, 0.1);
+    border:2px solid rgba(0, 204, 255, 0.5);
     width:50px;
     height:50px;
   }
@@ -262,11 +272,11 @@ export default {
     height:auto;
   }
   .img {
-    width:50px;
-    height:50px;
+    width:40px;
+    height:40px;
   }
   .ship{
-    background-color: rgb(194, 70, 174);
+    background-color: rgb(255, 255, 255);
     margin: 10px;
   }
   .h2{
@@ -292,5 +302,17 @@ export default {
   .v4{
     width: 50px;
     height: 200px;
+  }
+  .menu {
+    background-color: rgba(1, 21, 61, 0.50);
+    padding: 20px;
+  }
+  .shipmenu {
+    border:2px solid rgba(0, 120, 179, 0.48);
+    border-radius: 10px;
+    margin: 10px;
+  }
+  .shipmenu:hover {
+    border:3px solid rgba(0, 120, 179, 1);
   }
 </style>
