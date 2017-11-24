@@ -27,7 +27,7 @@ export const store = new Vuex.Store({
   },
   mutations: {},
   actions: {
-    getFirebase: function (context, xy) {
+    setShipFirebase: function (context, xy) {
       shipsetRef.child(this.state.boardOnplay + '/position/' + xy.y + '/' + xy.x + '/shipstatus').set(true)
     }
   }

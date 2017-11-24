@@ -176,7 +176,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getFirebase'
+      'setShipFirebase'
     ]),
     show (j, i) {
       for (let x = 0; x < this.x; x++) {
@@ -210,7 +210,7 @@ export default {
               x: x,
               y: y
             }
-            this.getFirebase(xy)
+            this.setShipFirebase(xy)
           }
         }
       }
