@@ -4,19 +4,19 @@
     <div class="columns">
       <div class="column">
         <table>
-          <tr v-for="y in getOwn" :key="y['.key']">
-              <td v-for="x in y" :key="x['.key']">
-                <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
-              </td>
+          <tr v-for="(y, indexY) in getOwn" :key="y['.key']">
+            <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY)" :class="setClass(x)">
+              <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
+            </td>
           </tr>
         </table>
       </div>
       <div class="column">
         <table>
-          <tr v-for="y in getEnemy" :key="y['.key']">
-              <td v-for="x in y" :key="x['.key']">
-                <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
-              </td>
+          <tr v-for="(y, indexY) in getEnemy" :key="y['.key']">
+            <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY)" :class="setClass(x)">
+              <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
+            </td>
           </tr>
         </table>
       </div>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Placeship',
   data () {
@@ -51,167 +51,145 @@ export default {
       hidemenu: [true, true, true],
       position: [
         [
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false}
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false}
         ],
         [
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false}
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false}
         ],
         [
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false}
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false}
         ],
         [
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false}
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false}
         ],
         [
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false}
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false}
         ],
         [
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false}
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false}
         ],
         [
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false}
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false}
         ],
         [
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false}
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false}
         ],
         [
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false}
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false}
         ],
         [
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false},
-          {shipstatus: false}
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false},
+          {shipstatus: false, bombstatus: false}
         ]
       ]
     }
   },
   methods: {
-    show (j, i) {
-      for (let x = 0; x < this.x; x++) {
-        if (j + x >= 10 || this.position[j + x][i].shipstatus) {
-          return 0
-        }
-      }
-      for (let y = 0; y < this.y; y++) {
-        if (i + y >= 10 || this.position[j][i + y].shipstatus) {
-          return 0
-        }
-      }
-      for (let x = 0; x < this.x; x++) {
-        this.position[j + x][i].shipstatus = true
-      }
-      for (let y = 0; y < this.y; y++) {
-        this.position[j][i + y].shipstatus = true
-      }
-      this.hide(this.x + this.y - 3)
-    },
+    ...mapActions([
+      'setbombFirebase'
+    ]),
     convert () {
       var jsonString = JSON.stringify(this.position)
       console.log(jsonString)
     },
-    setship () {
-      for (let y = 0; y < 10; y++) {
-        for (let x = 0; x < 10; x++) {
-          if (this.position[x][y].shipstatus) {
-            // shipset.child(this.boardOnplay + '/position/' + y + '/' + x + '/shipstatus').set(true)
-            this.showconsole(x, y)
-          }
-        }
+    setbomb (x, y) {
+      var xy = {
+        x: x,
+        y: y
       }
-      this.$router.go({
-        path: '/Playgame'
-      })
+      this.setbombFirebase(xy)
     },
-    showconsole (y, x) {
-      console.log(y + ',' + x)
+    showconsole (x, y) {
+      console.log(x + ',' + y)
     },
     showship (x, y) {
       return this.position[x][y].shipstatus
@@ -220,8 +198,14 @@ export default {
       this.x = x
       this.y = y
     },
-    hide (i) {
-      this.hidemenu[i] = false
+    setClass (obj) {
+      if (obj.shipstatus && obj.bombstatus) {
+        return 'boom'
+      } else if (obj.bombstatus) {
+        return 'empty'
+      } else {
+        return ''
+      }
     }
   },
   firebase: {
@@ -233,7 +217,7 @@ export default {
       this.position[i].push(new Array(10))
       for (var j = 0; j < 10; j++) {
         this.position[i][j] = {
-          shipstatus: false
+          shipstatus: false, bombstatus: false
         }
         console.log(this.position[i][j].shipstatus)
       }
@@ -267,5 +251,11 @@ export default {
   .ship{
     background-color: rgb(194, 70, 174);
     margin: 10px;
+  }
+  .boom {
+    background-color: rgba(203, 74, 10, 0.74);
+  }
+  .empty {
+    background-color: rgba(70, 142, 194,0.3);
   }
 </style>
