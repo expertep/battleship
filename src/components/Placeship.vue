@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <p>Drag the W3Schools image into the rectangle:</p>
-    
+
   <table>
   	<tr v-for="i in 10">
       	<td v-for="j in 10" :style="" @click="show(j-1,i-1)">
@@ -42,6 +42,18 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+let config = {
+  apiKey: 'AIzaSyBc4GvjjmZMezOuv2fc8FOUiPcyttLPmuw',
+  authDomain: 'battleship-d7f88.firebaseapp.com',
+  databaseURL: 'https://battleship-d7f88.firebaseio.com',
+  projectId: 'battleship-d7f88',
+  storageBucket: '',
+  messagingSenderId: '211714676183'
+}
+var firebaseApp = firebase.initializeApp(config)
+var db = firebaseApp.database()
+var shipsetRef = db.ref('boards')
 export default {
   name: 'Placeship',
   data () {
@@ -202,8 +214,8 @@ export default {
       for (let y = 0; y < 10; y++) {
         for (let x = 0; x < 10; x++) {
           if (this.position[x][y].shipstatus) {
-            // shipset.child(this.boardOnplay + '/position/' + y + '/' + x + '/shipstatus').set(true)
-            this.showconsole(x, y)
+            this.shipset.child(this.boardOnplay + '/position/' + y + '/' + x + '/shipstatus').set(true)
+            // this.showconsole(x, y)
           }
         }
       }
@@ -226,12 +238,7 @@ export default {
     }
   },
   firebase: {
-
-  },
-  computed: {
-    test () {
-      return this.$store.state.count
-    }
+    shipset: shipsetRef
   },
   created () {
     /* for (var i = 0; i < 10; i++) {
