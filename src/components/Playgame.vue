@@ -1,15 +1,27 @@
 <template>
   <div class="hello">
     <p>Drag the W3Schools image into the rectangle:</p>
+    <div class="columns">
+      <div class="column">
+        <table>
+          <tr v-for="i in 10">
+              <td v-for="j in 10" :style="" @click="show(j-1,i-1)">
+                <img v-if="showship(j-1,i-1)" src="../assets/ship.png" class="img">
+              </td>
+          </tr>
+        </table>
+      </div>
+      <div class="column">
+        <table>
+          <tr v-for="i in 10">
+              <td v-for="j in 10" :style="" @click="show(j-1,i-1)">
+                <img v-if="showship(j-1,i-1)" src="../assets/ship.png" class="img">
+              </td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
-  <table>
-  	<tr v-for="i in 10">
-      	<td v-for="j in 10" :style="" @click="show(j-1,i-1)">
-          <img v-if="showship(j-1,i-1)" src="../assets/ship.png" class="img">
-        </td>
-    </tr>
-
-  </table>
   <div class="field is-grouped">
     <div class="control">
       <button class="button is-link" @click="setship()">Next</button>
@@ -19,21 +31,7 @@
     </div>
   </div>
 
-  <div class="columns">
-    <div class="column" v-if="hidemenu[0]">
-      <div class="ship h2" @click="select(2,1)"></div>
-      <div class="ship v2" @click="select(1,2)"></div>
-    </div>
-    <div class="column" v-if="hidemenu[1]">
-      <div class="ship h3" @click="select(3,1)"></div>
-      <div class="ship v3" @click="select(1,3)"></div>
-    </div>
-    <div class="column" v-if="hidemenu[2]">
-      <div class="ship h4" @click="select(4,1)"></div>
-      <div class="ship v4" @click="select(1,4)"></div>
-    </div>
-    </a>
-  </div>
+
 
 
   <br>

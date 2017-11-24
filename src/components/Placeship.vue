@@ -32,7 +32,6 @@
       <div class="ship h4" @click="select(4,1)"></div>
       <div class="ship v4" @click="select(1,4)"></div>
     </div>
-    </a>
   </div>
 
 
@@ -42,18 +41,7 @@
 </template>
 
 <script>
-import firebase from 'firebase'
-let config = {
-  apiKey: 'AIzaSyBc4GvjjmZMezOuv2fc8FOUiPcyttLPmuw',
-  authDomain: 'battleship-d7f88.firebaseapp.com',
-  databaseURL: 'https://battleship-d7f88.firebaseio.com',
-  projectId: 'battleship-d7f88',
-  storageBucket: '',
-  messagingSenderId: '211714676183'
-}
-var firebaseApp = firebase.initializeApp(config)
-var db = firebaseApp.database()
-var shipsetRef = db.ref('boards')
+import { mapActions } from 'vuex'
 export default {
   name: 'Placeship',
   data () {
@@ -187,6 +175,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'getFirebase'
+    ]),
     show (j, i) {
       for (let x = 0; x < this.x; x++) {
         if (j + x >= 10 || this.position[j + x][i].shipstatus) {
@@ -214,14 +205,17 @@ export default {
       for (let y = 0; y < 10; y++) {
         for (let x = 0; x < 10; x++) {
           if (this.position[x][y].shipstatus) {
-            this.shipset.child(this.boardOnplay + '/position/' + y + '/' + x + '/shipstatus').set(true)
             // this.showconsole(x, y)
+            var xy = {
+              x: x,
+              y: y
+            }
+            this.getFirebase(xy)
           }
         }
       }
-      this.$router.go({
-        path: '/Playgame'
-      })
+      this.$router.push('Playgame')
+      // router.push({ name: '/Playgame'})
     },
     showconsole (y, x) {
       console.log(y + ',' + x)
@@ -238,7 +232,6 @@ export default {
     }
   },
   firebase: {
-    shipset: shipsetRef
   },
   created () {
     /* for (var i = 0; i < 10; i++) {
