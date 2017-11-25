@@ -21,140 +21,26 @@ export const store = new Vuex.Store({
     boardOnplay: '0011',
     me: '',
     enemy: '',
-    position: [
-      [
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false}
-      ],
-      [
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false}
-      ],
-      [
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false}
-      ],
-      [
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false}
-      ],
-      [
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false}
-      ],
-      [
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false}
-      ],
-      [
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false}
-      ],
-      [
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false}
-      ],
-      [
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false}
-      ],
-      [
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false},
-        {shipstatus: false, bombstatus: false}
-      ]
-    ],
+    positionOwn: [],
+    positionEnemy: [],
     user: {},
     userProfile: {}
   },
   getters: {
     user: state => state.user,
     userProfile: state => state.userProfile,
-    Ownsea: state => state.position,
-    Enemysea: state => state.position
+    Ownsea: state => state.positionOwn,
+    Enemysea: state => state.positionEnemy
   },
   mutations: {
     setUser (state, user) {
       state.user = user
+    },
+    setpositionOwn (state, obj) {
+      state.positionOwn = obj
+    },
+    setpositionEnemy (state, obj) {
+      state.positionEnemy = obj
     }
   },
   actions: {
@@ -165,17 +51,17 @@ export const store = new Vuex.Store({
       })
       shipsetRef.child(this.state.boardOnplay + '/scoreA').set(tmp + 1)
     },
-    getEnemy: function (state) {
-      shipsetRef.child(state.boardOnplay + '/positionA').on('value', function (snapshot) {
-        state.position = snapshot.val()
+    getEnemy: function (context) {
+      shipsetRef.child(this.state.boardOnplay + '/positionB').on('value', function (snapshot) {
+        context.commit('setpositionEnemy', snapshot.val())
       },
       function (error) {
         console.log('Error: ' + error.code)
       })
     },
-    getOwn: function (state) {
-      shipsetRef.child(state.boardOnplay + '/positionA').on('value', function (snapshot) {
-        state.position = snapshot.val()
+    getOwn: function (context) {
+      shipsetRef.child(this.state.boardOnplay + '/positionA').on('value', function (snapshot) {
+        context.commit('setpositionOwn', snapshot.val())
       },
       function (error) {
         console.log('Error: ' + error.code)

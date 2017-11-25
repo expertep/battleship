@@ -5,8 +5,7 @@
     <h2 class="subtitle has-text-light">score = {{score}} - 0</h2>
     <div class="columns is-mobile is-centered">
       <div class="column is-6">
-
-        <h1 class="title has-text-light" v-if="score==9">You win</h1>
+        <h1 class="title has-text-light" v-if="score==16">You win</h1>
         <h2 class="subtitle has-text-light">me</h2>
         <table>
           <tr v-for="(y, indexY) in Ownsea" :key="y['.key']">
@@ -28,7 +27,7 @@
       </div>
     </div>
     <br><br>
-    <div class="columns is-mobile is-centered menu" v-if="score==9">
+    <div class="columns is-mobile is-centered menu" v-if="score==16">
       <div class="field is-grouped">
         <div class="control">
           <button class="button is-primary is-large" @click="">Finish</button>
@@ -98,8 +97,11 @@ export default {
       this.getOwn()
       this.getEnemy()
     }
+  },
+  created () {
+    this.getOwn()
+    this.getEnemy()
   }
-
 }
 </script>
 
