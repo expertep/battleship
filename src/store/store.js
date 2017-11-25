@@ -21,6 +21,10 @@ export const store = new Vuex.Store({
     boardOnplay: '0011',
     me: '',
     enemy: '',
+    score: {
+      A: 0,
+      B: 0
+    },
     positionOwn: [],
     positionEnemy: [],
     user: {},
@@ -30,7 +34,8 @@ export const store = new Vuex.Store({
     user: state => state.user,
     userProfile: state => state.userProfile,
     Ownsea: state => state.positionOwn,
-    Enemysea: state => state.positionEnemy
+    Enemysea: state => state.positionEnemy,
+    score: state => state.score
   },
   mutations: {
     setUser (state, user) {
@@ -41,9 +46,25 @@ export const store = new Vuex.Store({
     },
     setpositionEnemy (state, obj) {
       state.positionEnemy = obj
+    },
+    setScore (state, obj) {
+      state.score = obj
     }
   },
   actions: {
+    getScore: function (context, obj) {
+      var tmp = {
+        A: 0,
+        B: 0
+      }
+      shipsetRef.child(this.state.boardOnplay + '/scoreA').on('value', function (snapshot) {
+        tmp.A = snapshot.val()
+      })
+      shipsetRef.child(this.state.boardOnplay + '/scoreB').on('value', function (snapshot) {
+        tmp.B = snapshot.val()
+      })
+      context.commit('setScore', tmp)
+    },
     addScore: function () {
       var tmp
       shipsetRef.child(this.state.boardOnplay + '/scoreA').on('value', function (snapshot) {
@@ -71,7 +92,7 @@ export const store = new Vuex.Store({
       shipsetRef.child(this.state.boardOnplay + '/positionA/' + xy.y + '/' + xy.x + '/shipstatus').set(true)
     },
     setbombFirebase: function (context, xy) {
-      shipsetRef.child(this.state.boardOnplay + '/positionA/' + xy.y + '/' + xy.x + '/bombstatus').set(true)
+      shipsetRef.child(this.state.boardOnplay + '/positionB/' + xy.y + '/' + xy.x + '/bombstatus').set(true)
     },
     login () {
       let provider = new firebase.auth.FacebookAuthProvider()

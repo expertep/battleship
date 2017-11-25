@@ -37,7 +37,7 @@
   <div class="columns is-mobile is-centered menu">
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-primary is-large" @click="setship()">Next</button>
+        <button @click="setship()" :class="setClassdisable()">Next</button>
       </div>
       <div class="control">
         <button class="button is-danger is-large" @click="convert">Cancel</button>
@@ -222,7 +222,6 @@ export default {
       for (let y = 0; y < 10; y++) {
         for (let x = 0; x < 10; x++) {
           if (this.position[x][y].shipstatus) {
-            // this.showconsole(x, y)
             var xy = {
               x: x,
               y: y
@@ -245,6 +244,11 @@ export default {
     },
     hide (i) {
       this.hidemenu[i] = false
+    },
+    setClassdisable () {
+      if (this.countship[0] + this.countship[1] + this.countship[2] > 3) {
+        return 'button is-primary is-large is-static'
+      } else return 'button is-primary is-large'
     }
   },
   firebase: {

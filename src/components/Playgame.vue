@@ -2,14 +2,14 @@
   <div class="hello">
     <h1 class="title has-text-light">Battleship</h1>
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
-    <h2 class="subtitle has-text-light">score = {{score}} - 0</h2>
+    <h2 class="subtitle has-text-light">score = {{score.A}} - {{score.B}}</h2>
     <div class="columns is-mobile is-centered">
       <div class="column is-6">
         <h1 class="title has-text-light" v-if="score==16">You win</h1>
         <h2 class="subtitle has-text-light">me</h2>
         <table>
           <tr v-for="(y, indexY) in Ownsea" :key="y['.key']">
-            <td v-for="(x, indexX) in y" :key="x['.key']" :class="">
+            <td v-for="(x, indexX) in y" :key="x['.key']" :class="setClass(x)">
               <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
             </td>
           </tr>
@@ -47,7 +47,6 @@ export default {
     return {
       x: 0,
       y: 0,
-      score: 0,
       boardOnplay: '0011',
       ShipEnemy: '',
       hidemenu: [true, true, true]
@@ -58,11 +57,11 @@ export default {
       'setbombFirebase',
       'addScore',
       'getEnemy',
-      'getOwn'
+      'getOwn',
+      'getScore'
     ]),
     setbomb (x, y, obj) {
       if (obj.shipstatus && !obj.bombstatus) {
-        this.score++
         this.addScore()
       }
       var xy = {
@@ -91,16 +90,22 @@ export default {
   computed: {
     ...mapGetters([
       'Ownsea',
-      'Enemysea'
+      'Enemysea',
+      'score'
     ]),
-    undate () {
+    undatesea () {
       this.getOwn()
       this.getEnemy()
+    },
+    undatescore () {
+      this.getScore()
     }
+
   },
   created () {
     this.getOwn()
     this.getEnemy()
+    this.getScore()
   }
 }
 </script>
