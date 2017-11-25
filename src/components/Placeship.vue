@@ -19,17 +19,17 @@
   </div>
   <div class="columns menu">
     <div class="column shipmenu" v-if="hidemenu[0]">
-      <h3 class="subtitle has-text-white">เรือเล็ก</h3>
+      <h3 class="subtitle has-text-white">เรือเล็ก X {{countship[0]}}</h3>
       <div class="ship h2" @click="select(2,1)"></div>
       <div class="ship v2" @click="select(1,2)"></div>
     </div>
     <div class="column shipmenu" v-if="hidemenu[1]">
-      <h3 class="subtitle has-text-white">เรือกลาง</h3>
+      <h3 class="subtitle has-text-white">เรือกลาง X {{countship[1]}}</h3>
       <div class="ship h3" @click="select(3,1)"></div>
       <div class="ship v3" @click="select(1,3)"></div>
     </div>
     <div class="column shipmenu" v-if="hidemenu[2]">
-      <h3 class="subtitle has-text-white">เรือใหญ่</h3>
+      <h3 class="subtitle has-text-white">เรือใหญ่ X {{countship[2]}}</h3>
       <div class="ship h4" @click="select(4,1)"></div>
       <div class="ship v4" @click="select(1,4)"></div>
     </div>
@@ -59,6 +59,7 @@ export default {
       x: 0,
       y: 0,
       boardOnplay: '0011',
+      countship: [3, 2, 1],
       hidemenu: [true, true, true],
       position: [
         [
@@ -205,7 +206,13 @@ export default {
       for (let y = 0; y < this.y; y++) {
         this.position[j][i + y].shipstatus = true
       }
-      this.hide(this.x + this.y - 3)
+      if (this.countship[this.x + this.y - 3] > 1) {
+        --this.countship[this.x + this.y - 3]
+      } else {
+        this.hide(this.x + this.y - 3)
+      }
+      this.x = 0
+      this.y = 0
     },
     convert () {
       var jsonString = JSON.stringify(this.position)
