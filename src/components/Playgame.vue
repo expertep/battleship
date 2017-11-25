@@ -9,7 +9,7 @@
         <h1 class="title has-text-light" v-if="score==9">You win</h1>
         <h2 class="subtitle has-text-light">me</h2>
         <table>
-          <tr v-for="(y, indexY) in getOwn" :key="y['.key']">
+          <tr v-for="(y, indexY) in Ownsea" :key="y['.key']">
             <td v-for="(x, indexX) in y" :key="x['.key']" :class="">
               <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
             </td>
@@ -19,7 +19,7 @@
       <div class="column is-6">
         <h2 class="subtitle has-text-light">enemy</h2>
         <table>
-          <tr v-for="(y, indexY) in getEnemy" :key="y['.key']">
+          <tr v-for="(y, indexY) in Enemysea" :key="y['.key']">
             <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY,x)" :class="setClass(x)">
               <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
             </td>
@@ -28,7 +28,7 @@
       </div>
     </div>
     <br><br>
-    <div class="columns is-mobile is-centered menu">
+    <div class="columns is-mobile is-centered menu" v-if="score==9">
       <div class="field is-grouped">
         <div class="control">
           <button class="button is-primary is-large" @click="">Finish</button>
@@ -56,11 +56,15 @@ export default {
   },
   methods: {
     ...mapActions([
-      'setbombFirebase'
+      'setbombFirebase',
+      'addScore',
+      'getEnemy',
+      'getOwn'
     ]),
     setbomb (x, y, obj) {
       if (obj.shipstatus && !obj.bombstatus) {
         this.score++
+        this.addScore()
       }
       var xy = {
         x: x,
@@ -85,26 +89,15 @@ export default {
       }
     }
   },
-  firebase: {
-  },
-  created () {
-    // this.enemysea = this.getShipEnemy()
-    /* for (var i = 0; i < 10; i++) {
-      this.position.push([])
-      this.position[i].push(new Array(10))
-      for (var j = 0; j < 10; j++) {
-        this.position[i][j] = {
-          shipstatus: false, bombstatus: false
-        }
-        console.log(this.position[i][j].shipstatus)
-      }
-    } */
-  },
   computed: {
     ...mapGetters([
-      'getEnemy',
-      'getOwn'
-    ])
+      'Ownsea',
+      'Enemysea'
+    ]),
+    undate () {
+      this.getOwn()
+      this.getEnemy()
+    }
   }
 
 }

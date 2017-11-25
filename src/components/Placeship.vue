@@ -225,7 +225,6 @@ export default {
         }
       }
       this.$router.push('Playgame')
-      // router.push({ name: '/Playgame'})
     },
     showconsole (y, x) {
       console.log(y + ',' + x)
@@ -276,30 +275,41 @@ export default {
     height:40px;
   }
   .ship{
-    background-color: rgb(255, 255, 255);
     margin: 10px;
   }
   .h2{
+    background-image: url("../assets/ship2.png");
+    background-repeat: no-repeat;
     width: 100px;
     height: 50px;
   }
   .v2{
+    background-image: url("../assets/ship2d.png");
+    background-repeat: no-repeat;
     width: 50px;
     height: 100px;
   }
   .h3{
+    background-image: url("../assets/ship3.png");
+    background-repeat: no-repeat;
     width: 150px;
     height: 50px;
   }
   .v3{
+    background-image: url("../assets/ship3d.png");
+    background-repeat: no-repeat;
     width: 50px;
     height: 150px;
   }
   .h4{
+    background-image: url("../assets/ship4.png");
+    background-repeat: no-repeat;
     width: 200px;
     height: 50px;
   }
   .v4{
+    background-image: url("../assets/ship4d.png");
+    background-repeat: no-repeat;
     width: 50px;
     height: 200px;
   }
