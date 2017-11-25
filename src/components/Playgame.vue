@@ -2,8 +2,11 @@
   <div class="hello">
     <h1 class="title has-text-light">Battleship</h1>
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
+    <h2 class="subtitle has-text-light">score = {{score}} - 0</h2>
     <div class="columns is-mobile is-centered">
       <div class="column is-6">
+
+        <h1 class="title has-text-light" v-if="score==9">You win</h1>
         <h2 class="subtitle has-text-light">me</h2>
         <table>
           <tr v-for="(y, indexY) in getOwn" :key="y['.key']">
@@ -17,7 +20,7 @@
         <h2 class="subtitle has-text-light">enemy</h2>
         <table>
           <tr v-for="(y, indexY) in getEnemy" :key="y['.key']">
-            <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY)" :class="setClass(x)">
+            <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY,x)" :class="setClass(x)">
               <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
             </td>
           </tr>
@@ -55,7 +58,10 @@ export default {
     ...mapActions([
       'setbombFirebase'
     ]),
-    setbomb (x, y) {
+    setbomb (x, y, obj) {
+      if (obj.shipstatus && !obj.bombstatus) {
+        this.score++
+      }
       var xy = {
         x: x,
         y: y
@@ -71,7 +77,6 @@ export default {
     },
     setClass (obj) {
       if (obj.shipstatus && obj.bombstatus) {
-        this.score++
         return 'boom'
       } else if (obj.bombstatus) {
         return 'empty'

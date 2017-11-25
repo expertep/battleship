@@ -145,8 +145,11 @@ export const store = new Vuex.Store({
     ]
   },
   getters: {
+    checkwin (state) {
+      console.log('')
+    },
     getEnemy (state) {
-      shipsetRef.child(state.boardOnplay + '/positionB').on('value', function (snapshot) {
+      shipsetRef.child(state.boardOnplay + '/positionA').on('value', function (snapshot) {
         state.position = snapshot.val()
       },
       function (error) {
@@ -170,7 +173,7 @@ export const store = new Vuex.Store({
       shipsetRef.child(this.state.boardOnplay + '/positionA/' + xy.y + '/' + xy.x + '/shipstatus').set(true)
     },
     setbombFirebase: function (context, xy) {
-      shipsetRef.child(this.state.boardOnplay + '/positionB/' + xy.y + '/' + xy.x + '/bombstatus').set(true)
+      shipsetRef.child(this.state.boardOnplay + '/positionA/' + xy.y + '/' + xy.x + '/bombstatus').set(true)
     }
   }
 })
