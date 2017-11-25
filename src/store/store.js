@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase'
+import { firebaseMutations, firebaseAction } from 'vuexfire'
+import router from '../router/index'
+
 let config = {
   apiKey: 'AIzaSyBc4GvjjmZMezOuv2fc8FOUiPcyttLPmuw',
   authDomain: 'battleship-d7f88.firebaseapp.com',
@@ -27,15 +30,36 @@ export const store = new Vuex.Store({
     },
     positionOwn: [],
     positionEnemy: [],
+    isReady: false,
     user: {},
     userProfile: {}
   },
   getters: {
     user: state => state.user,
+    route: state => state.route,
+    isReady: state => state.isReady,
     userProfile: state => state.userProfile,
     Ownsea: state => state.positionOwn,
     Enemysea: state => state.positionEnemy,
-    score: state => state.score
+    score: state => state.score,
+    getEnemy (state) {
+      shipsetRef.child(state.boardOnplay + '/positionA').on('value', function (snapshot) {
+        state.position = snapshot.val()
+      },
+      function (error) {
+        console.log('Error: ' + error.code)
+      })
+      return state.position
+    },
+    getOwn (state) {
+      shipsetRef.child(state.boardOnplay + '/positionA').on('value', function (snapshot) {
+        state.position = snapshot.val()
+      },
+      function (error) {
+        console.log('Error: ' + error.code)
+      })
+      return state.position
+    }
   },
   mutations: {
     setUser (state, user) {
@@ -49,7 +73,8 @@ export const store = new Vuex.Store({
     },
     setScore (state, obj) {
       state.score = obj
-    }
+    },
+    ...firebaseMutations
   },
   actions: {
     getScore: function (context, obj) {
@@ -94,9 +119,39 @@ export const store = new Vuex.Store({
     setbombFirebase: function (context, xy) {
       shipsetRef.child(this.state.boardOnplay + '/positionB/' + xy.y + '/' + xy.x + '/bombstatus').set(true)
     },
+    init ({ commit, dispatch, bindFirebaseRef }) {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user && user.uid) {
+          let { displayName, uid } = user
+          let profile = {
+            displayName,
+            uid,
+            fb: user.providerData[0]
+          }
+          commit('setUser', profile)
+          router.push('/')
+        } else {
+          commit('setUser', null)
+          router.push('/login')
+          commit('setReady')
+        }
+      })
+    },
     login () {
       let provider = new firebase.auth.FacebookAuthProvider()
       firebase.auth().signInWithRedirect(provider)
-    }
+    },
+    logout () {
+      firebase.auth().signOut()
+    },
+    setUserProfileRef: firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, id) => {
+        // this will unbind any previously bound ref to 'todos'
+      let userProfile = db.ref('twitter/users/' + id)
+      bindFirebaseRef('userProfile', userProfile)
+    }),
+    unSetUserProfileRef: firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }) => {
+        // you can unbind it easily too
+      unbindFirebaseRef('userProfile')
+    })
   }
 })
