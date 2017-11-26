@@ -6,6 +6,7 @@ import Playgame from '@/components/Playgame'
 import Profile from '@/components/Profile'
 import lobby from '@/components/lobby'
 import room from '@/components/room'
+import CreateRoom from '@/components/CreateRoom'
 Vue.use(Router)
 
 export default new Router({
@@ -39,6 +40,11 @@ export default new Router({
       path: '/Playgame',
       name: 'Playgame',
       component: Playgame
+    },
+    {
+      path: '/CreateRoom',
+      name: 'CreateRoom',
+      component: CreateRoom
     }
   ]
 })

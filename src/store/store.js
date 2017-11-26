@@ -92,6 +92,14 @@ export const store = new Vuex.Store({
     ...firebaseMutations
   },
   actions: {
+    setRoom: function (context, name) {
+      var tmp = {
+        name: name,
+        own: this.state.me
+      }
+      var key = roomsRef.push(tmp).getKey()
+      return key
+    },
     setOffline: function (context) {
       playersRef.child(this.state.me + '/status').set('offline')
     },

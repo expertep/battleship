@@ -11,9 +11,9 @@
       </div>
       <div class="control" >
         <center>
-          <a href="room.vue">
-            <input type="button " value="create room" class="button is-link">
-          </a>
+        <router-link to="CreateRoom">
+        <input type="button " value="create room" class="button is-link">
+        </router-link>
         </center>
       </div>
     <br>
