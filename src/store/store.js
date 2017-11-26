@@ -33,19 +33,18 @@ export const store = new Vuex.Store({
       A: 0,
       B: 0
     },
+    roomId: '',
     displayName: '',
     photoURL: '',
     rooms: [],
     positionOwn: [],
     positionEnemy: [],
-    isReady: true,
     user: {},
     userProfile: {}
   },
   getters: {
     user: state => state.user,
     route: state => state.route,
-    isReady: state => state.isReady,
     userProfile: state => state.userProfile,
     Ownsea: state => state.positionOwn,
     Enemysea: state => state.positionEnemy,
@@ -93,6 +92,9 @@ export const store = new Vuex.Store({
     ...firebaseMutations
   },
   actions: {
+    setOffline: function (context) {
+      playersRef.child(this.state.me + '/status').set('offline')
+    },
     getScore: function (context, obj) {
       var tmp = {
         A: 0,
@@ -146,18 +148,19 @@ export const store = new Vuex.Store({
     init ({ commit, dispatch, bindFirebaseRef }) {
       firebase.auth().onAuthStateChanged((user) => {
         if (user && user.uid) {
-          let { displayName, uid } = user
-          let profile = {
-            displayName,
-            uid,
-            fb: user.providerData[0]
+          // let { name, picture } = user
+          var tmp = {
+            name: user.displayName,
+            picture: user.photoURL,
+            fb: user.providerData[0],
+            boardOnplay: ''
           }
-          commit('setUser', profile)
-          router.push('/')
+          commit('setKeyplayer', user.uid)
+          commit('setUser', tmp)
+          // router.push('/')
         } else {
           commit('setUser', null)
-          router.push('/login')
-          commit('setReady')
+          // router.push('/login')
         }
       })
     },

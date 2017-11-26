@@ -1,21 +1,24 @@
 <template>
   <div class="hello">
     <h1 class="title has-text-light">Battle Ship Game </h1>
-      <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
-      <h2 class="subtitle has-text-light">{{user.name}}</h2>
-      <h2 class="subtitle has-text-primary">choose room to play</h2>
-      <div v-for="(room, key) in rooms" :key="room['.key']">
-        <h2>
-          <router-link :to="{ name: 'room', params: { roomId: key}}">{{room.name}}</router-link>
-        </h2>
+    <div class="columns">
+      <div class="column">
+        <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
+        <h2 class="subtitle has-text-light">{{user.name}}</h2>
+        <h2 class="subtitle has-text-primary">{{roomId}}</h2>
+        <div class="control" >
+          <input type="button " value="Ready" class="button is-link">
+        </div>
       </div>
-      <div class="control" >
-        <center>
-          <a href="room.vue">
-            <input type="button " value="create room" class="button is-link">
-          </a>
-        </center>
+      <div class="column">
+        <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
+        <h2 class="subtitle has-text-light">{{user.name}}</h2>
+        <h2 class="subtitle has-text-primary">{{roomId}}</h2>
+        <div class="control" >
+          <input type="button " value="Ready" class="button is-link">
+        </div>
       </div>
+    </div>
     <br>
   </div>
 </template>
@@ -26,18 +29,15 @@ export default {
   name: 'Placeship',
   data () {
     return {
-      boardOnplay: '0011'
+      boardOnplay: '0011',
+      roomId: ''
     }
   },
   methods: {
     ...mapActions([
       'getroom',
       'init'
-    ]),
-    setroomId (key) {
-      console.log(key)
-      // this.$router.push('room/')
-    }
+    ])
   },
   computed: {
     ...mapGetters([
@@ -49,7 +49,7 @@ export default {
     }
   },
   created () {
-    this.getroom()
+    this.roomId = this.$route.params.roomId
     this.init()
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="me !== ''">
+    <div v-if="user">
       <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
       <br>
       <h2 class="subtitle">{{user.displayName}}</h2>
@@ -8,7 +8,7 @@
     </div>
     
     <br><br><br>
-    <router-link to="#/lobby">
+    <router-link to="lobby">
       <button class="button">LET PLAY</button>
     </router-link>
     </a>
@@ -40,8 +40,16 @@ export default {
   methods: {
     ...mapActions([
       'logout',
-      'login'
+      'login',
+      'init',
+      'setOffline'
     ])
+  },
+  created () {
+    this.init()
+  },
+  beforeDestroy () {
+    // this.setOffline()
   }
 }
 </script>
