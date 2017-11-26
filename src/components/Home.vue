@@ -16,7 +16,7 @@
     <div>
       <h1 class= "title is-1"> Battleship </h1>
       <h2 class ="title is-4"> Login Facebook </h2>
-      <button class="button" @click="login()">login</button>
+      <button class="button" @click="login()" v-if="!user">login</button>
     </div>
   </div>
 </template>

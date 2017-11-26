@@ -6,7 +6,8 @@
       <h2 class="subtitle has-text-primary">choose room to play</h2>
       <div v-for="(room, key) in rooms" :key="room['.key']">
         <h2>
-          <router-link :to="{ name: 'room', params: { roomId: key}}">{{room.name}}</router-link>
+          <button class="button is-primary" @click="setroomId(key)">{{room.name}}</button>
+          
         </h2>
       </div>
       <div class="control" >
@@ -32,10 +33,12 @@ export default {
   methods: {
     ...mapActions([
       'getroom',
-      'init'
+      'init',
+      'joinroomfirebase'
     ]),
     setroomId (key) {
-      console.log(key)
+      this.joinroomfirebase(key)
+      this.$router.push({name: 'room', params: {roomId: key}})
       // this.$router.push('room/')
     }
   },
@@ -57,29 +60,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  td{
-    border:2px solid rgba(0, 204, 255, 0.1);
-    width:50px;
-    height:50px;
-  }
-  table{
-    width:auto;
-    height:auto;
-  }
-  .img {
-    width:40px;
-    height:40px;
-  }
-  .ship{
-    background-color: rgb(194, 70, 174);
-    margin: 10px;
-  }
-  .boom {
-    background-color: rgba(203, 74, 10, 0.74);
-  }
-  .empty {
-    background-color: rgba(70, 142, 194,0.3);
-  }
   .photo-url {
   width: 48px;
   height: 48px;

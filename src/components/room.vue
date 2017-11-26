@@ -1,22 +1,30 @@
 <template>
-  <div class="hello">
+  <div class="room">
     <h1 class="title has-text-light">Battle Ship Game </h1>
-    <div class="columns">
+    <h1 class="title has-text-light">{{party.name}}</h1>
+    <div class="columns is-centered roomplayer">
       <div class="column">
-        <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
-        <h2 class="subtitle has-text-light">{{user.name}}</h2>
-        <h2 class="subtitle has-text-primary">{{roomId}}</h2>
-        <div class="control" >
-          <input type="button " value="Ready" class="button is-link">
+        <div v-if="me == party.own">
+         <h1>head</h1>
         </div>
+        <img :src="Players.playerA.picture" class="photo-url" alt="">
+        <h2 class="subtitle has-text-light">{{Players.playerA.name}}</h2>
+        <h2 class="subtitle has-text-primary"></h2>
+        <input type="button" :value="status.A" class="button is-link is-center" @click="statusplayer('A')">
       </div>
       <div class="column">
-        <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
-        <h2 class="subtitle has-text-light">{{user.name}}</h2>
-        <h2 class="subtitle has-text-primary">{{roomId}}</h2>
-        <div class="control">
-          <input type="button " value="Ready" class="button is-link">
+        <div v-if="party.playerB">
+          <img :src="Players.playerB.picture" class="photo-url" alt="">
+          <h2 class="subtitle has-text-light">{{Players.playerB.name}}</h2>
+          <h2 class="subtitle has-text-primary"></h2>
+          <input type="button" :value="status.B" class="button is-link is-center" @click="statusplayer('B')">
         </div>
+
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <input type="button " value="Play" class="button is-danger" @click="startgame()">
       </div>
     </div>
     <br>
@@ -30,59 +38,78 @@ export default {
   data () {
     return {
       boardOnplay: '0011',
-      roomId: ''
+      roomId: '',
+      status: {
+        A: 'Wait',
+        B: 'Wait'
+      }
     }
   },
   methods: {
     ...mapActions([
-      'getroom',
-      'init'
-    ])
+      'init',
+      'updateparty',
+      'loadPlayer',
+      'outRoom',
+      'deleteRoom',
+      'createBoard'
+    ]),
+    statusplayer (player) {
+      var str = 'Ready'
+      if (player === 'A') {
+        if (this.status.A === 'Wait') this.status.A = str
+        else this.status.A = 'Wait'
+      } else {
+        if (this.status.B === 'Wait') this.status.B = str
+        else this.status.B = 'Wait'
+      }
+      if (this.status.A === 'Ready' && this.status.B === 'Ready') {
+        this.startgame()
+      }
+    },
+    startgame () {
+      this.createBoard(this.party)
+      this.deleteRoom(this.roomId)
+      window.location.replace('#/placeship')
+    }
   },
   computed: {
     ...mapGetters([
-      'rooms',
-      'user'
+      'party',
+      'user',
+      'Players',
+      'me'
     ]),
-    undaterooms () {
-      this.getroom()
+    undateroom () {
+      this.updateparty(this.roomId)
+      this.loadPlayer(this.roomId)
     }
   },
   created () {
     this.roomId = this.$route.params.roomId
     this.init()
+    this.updateparty(this.roomId)
+    this.loadPlayer(this.roomId)
+  },
+  beforeDestroy () {
+    /* if (this.me === this.party.own) {
+      this.outRoom(this.roomId, 'A')
+    } else {
+      this.outRoom(this.roomId, 'B')
+    } */
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  td{
-    border:2px solid rgba(0, 204, 255, 0.1);
-    width:50px;
-    height:50px;
-  }
-  table{
-    width:auto;
-    height:auto;
-  }
-  .img {
-    width:40px;
-    height:40px;
-  }
-  .ship{
-    background-color: rgb(194, 70, 174);
-    margin: 10px;
-  }
-  .boom {
-    background-color: rgba(203, 74, 10, 0.74);
-  }
-  .empty {
-    background-color: rgba(70, 142, 194,0.3);
-  }
   .photo-url {
   width: 48px;
   height: 48px;
   border-radius: 24px;
-}
+  }
+  .roomplayer {
+    padding: 100px;
+  }
+
 </style>

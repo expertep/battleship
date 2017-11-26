@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase'
-import { firebaseMutations, firebaseAction } from 'vuexfire'
+import { firebaseMutations } from 'vuexfire'
 import router from '../router/index'
 
 let config = {
@@ -26,9 +26,9 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     count: 0,
-    boardOnplay: '0011',
+    boardOnplay: '',
     me: '',
-    enemy: '',
+    Players: {},
     score: {
       A: 0,
       B: 0
@@ -37,10 +37,134 @@ export const store = new Vuex.Store({
     displayName: '',
     photoURL: '',
     rooms: [],
-    positionOwn: [],
+    positionOwn: [
+      [
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false}
+      ],
+      [
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false}
+      ],
+      [
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false}
+      ],
+      [
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false}
+      ],
+      [
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false}
+      ],
+      [
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false}
+      ],
+      [
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false}
+      ],
+      [
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false}
+      ],
+      [
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false}
+      ],
+      [
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false},
+        {shipstatus: false, bombstatus: false}
+      ]
+    ],
     positionEnemy: [],
     user: {},
-    userProfile: {}
+    userProfile: {},
+    party: {},
+    statusplayer: '',
+    statuscoplayer: ''
   },
   getters: {
     user: state => state.user,
@@ -51,24 +175,8 @@ export const store = new Vuex.Store({
     score: state => state.score,
     rooms: state => state.rooms,
     me: state => state.me,
-    getEnemy (state) {
-      shipsetRef.child(state.boardOnplay + '/positionA').on('value', function (snapshot) {
-        state.position = snapshot.val()
-      },
-      function (error) {
-        console.log('Error: ' + error.code)
-      })
-      return state.position
-    },
-    getOwn (state) {
-      shipsetRef.child(state.boardOnplay + '/positionA').on('value', function (snapshot) {
-        state.position = snapshot.val()
-      },
-      function (error) {
-        console.log('Error: ' + error.code)
-      })
-      return state.position
-    }
+    Players: state => state.Players,
+    party: state => state.party
   },
   mutations: {
     setUser (state, user) {
@@ -83,25 +191,106 @@ export const store = new Vuex.Store({
     setScore (state, obj) {
       state.score = obj
     },
-    setRoom (state, obj) {
+    setRooms (state, obj) {
       state.rooms = obj
     },
     setKeyplayer (state, id) {
       state.me = id
     },
+    setroomId (state, id) {
+      state.roomId = id
+    },
+    setParty (state, obj) {
+      state.party = obj
+    },
+    setPlayer (state, obj) {
+      state.Players = obj
+    },
+    setstatusplayer (state, str) {
+      state.statusplayer = str
+      if (str === 'positionA') state.statuscoplayer = 'positionB'
+      else state.statuscoplayer = 'positionA'
+    },
     ...firebaseMutations
   },
   actions: {
+    createBoard: function (context, obj) {
+      var tmp = {
+        own: obj.own,
+        playerB: obj.playerB,
+        positionA: this.positionOwn,
+        positionB: this.positionOwn,
+        scoreA: 0,
+        scoreB: 0,
+        turn: 0
+      }
+      var key = shipsetRef.push(tmp).getKey()
+      playersRef.child(this.state.me + '/boardOnplay').push(key)
+      var str = 'positionA'
+      if (this.state.me !== obj.own) str = 'positionB'
+      context.commit('setstatusplayer', str)
+    },
+    deleteRoom: function (context, id) {
+      roomsRef.child(id).set(null)
+    },
+    outRoom: function (context, id, sign) {
+      if (sign === 'A') {
+        roomsRef.child(id + '/playerA').set('')
+        roomsRef.child(id + '/playerB').on('value', function (snapshot) {
+          if (snapshot.val()) {
+            roomsRef.child(id + '/playerA').set(snapshot.val())
+          } else roomsRef.child(id).set('')
+        },
+        function (error) {
+          console.log('Error: ' + error.code)
+        })
+      } else {
+        roomsRef.child(id + '/playerB').set('')
+      }
+    },
+    loadPlayer: function (context, id) {
+      var tmp = {
+        playerA: {},
+        playerB: {}
+      }
+      roomsRef.child(id).on('value', function (snapshot) {
+        var room = snapshot.val()
+        playersRef.child(room.own).on('value', function (snapshot) {
+          tmp.playerA = snapshot.val()
+        })
+        if (room.playerB) {
+          playersRef.child(room.playerB).on('value', function (snapshot) {
+            tmp.playerB = snapshot.val()
+          })
+        }
+        context.commit('setPlayer', tmp)
+      },
+      function (error) {
+        console.log('Error: ' + error.code)
+      })
+    },
+    joinroomfirebase: function (context, id) {
+      roomsRef.child(id + '/playerB').set(this.state.me)
+      context.commit('setroomId', id)
+    },
+    updateparty: function (context, roomId) {
+      roomsRef.child(roomId).on('value', function (snapshot) {
+        var obj = snapshot.val()
+        context.commit('setParty', obj)
+      },
+      function (error) {
+        console.log('Error: ' + error.code)
+      })
+    },
     setRoom: function (context, name) {
       var tmp = {
         name: name,
-        own: this.state.me
+        own: this.state.me,
+        playerB: ''
       }
       var key = roomsRef.push(tmp).getKey()
+      context.commit('setroomId', key)
       return key
-    },
-    setOffline: function (context) {
-      playersRef.child(this.state.me + '/status').set('offline')
     },
     getScore: function (context, obj) {
       var tmp = {
@@ -124,7 +313,7 @@ export const store = new Vuex.Store({
       shipsetRef.child(this.state.boardOnplay + '/scoreA').set(tmp + 1)
     },
     getEnemy: function (context) {
-      shipsetRef.child(this.state.boardOnplay + '/positionB').on('value', function (snapshot) {
+      shipsetRef.child(this.state.boardOnplay + '/' + this.state.statuscoplayer).on('value', function (snapshot) {
         context.commit('setpositionEnemy', snapshot.val())
       },
       function (error) {
@@ -132,7 +321,7 @@ export const store = new Vuex.Store({
       })
     },
     getOwn: function (context) {
-      shipsetRef.child(this.state.boardOnplay + '/positionA').on('value', function (snapshot) {
+      shipsetRef.child(this.state.boardOnplay + '/' + this.state.boardOnplay).on('value', function (snapshot) {
         context.commit('setpositionOwn', snapshot.val())
       },
       function (error) {
@@ -140,14 +329,14 @@ export const store = new Vuex.Store({
       })
     },
     setShipFirebase: function (context, xy) {
-      shipsetRef.child(this.state.boardOnplay + '/positionA/' + xy.y + '/' + xy.x + '/shipstatus').set(true)
+      shipsetRef.child(this.state.boardOnplay + '/' + this.state.boardOnplay + '/' + xy.y + '/' + xy.x + '/shipstatus').set(true)
     },
     setbombFirebase: function (context, xy) {
-      shipsetRef.child(this.state.boardOnplay + '/positionB/' + xy.y + '/' + xy.x + '/bombstatus').set(true)
+      shipsetRef.child(this.state.boardOnplay + '/' + this.state.statuscoplayer + '/' + xy.y + '/' + xy.x + '/bombstatus').set(true)
     },
     getroom: function (context) {
       roomsRef.on('value', function (snapshot) {
-        context.commit('setRoom', snapshot.val())
+        context.commit('setRooms', snapshot.val())
       },
       function (error) {
         console.log('Error: ' + error.code)
@@ -196,15 +385,6 @@ export const store = new Vuex.Store({
       firebase.auth().signOut()
       context.user = null
       context.me = ''
-    },
-    setUserProfileRef: firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, id) => {
-        // this will unbind any previously bound ref to 'todos'
-      let userProfile = db.ref('twitter/users/' + id)
-      bindFirebaseRef('userProfile', userProfile)
-    }),
-    unSetUserProfileRef: firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }) => {
-        // you can unbind it easily too
-      unbindFirebaseRef('userProfile')
-    })
+    }
   }
 })

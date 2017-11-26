@@ -66,8 +66,8 @@ export default {
     }
   },
   created () {
-    this.getroom()
     this.init()
+    this.getroom()
   }
 }
 </script>

@@ -32,8 +32,8 @@ export default new Router({
       component: room
     },
     {
-      path: '/Placeship',
-      name: 'Placeship',
+      path: '/placeship',
+      name: 'placeship',
       component: Placeship
     },
     {
