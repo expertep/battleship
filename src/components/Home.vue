@@ -1,12 +1,23 @@
 <template>
   <div>
-    <div>
+    <div v-if="me !== ''">
       <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
       <br>
       <h2 class="subtitle">{{user.displayName}}</h2>
+      <button class="button" @click="logout()">Logout</button>
     </div>
+    
     <br><br><br>
-    <a @click="logout"><h1 class="title is-1">Logout</h1></a>
+    <router-link to="#/lobby">
+      <button class="button">LET PLAY</button>
+    </router-link>
+    </a>
+    
+    <div>
+      <h1 class= "title is-1"> Battleship </h1>
+      <h2 class ="title is-4"> Login Facebook </h2>
+      <button class="button" @click="login()">login</button>
+    </div>
   </div>
 </template>
 
@@ -22,12 +33,14 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'user'
+      'user',
+      'me'
     ])
   },
   methods: {
     ...mapActions([
-      'logout'
+      'logout',
+      'login'
     ])
   }
 }

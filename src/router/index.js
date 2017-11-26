@@ -4,7 +4,7 @@ import Home from '@/components/Home'
 import Placeship from '@/components/Placeship'
 import Playgame from '@/components/Playgame'
 import Profile from '@/components/Profile'
-import Login from '@/components/Login'
+import lobby from '@/components/lobby'
 Vue.use(Router)
 
 export default new Router({
@@ -20,9 +20,9 @@ export default new Router({
       component: Profile
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: Login
+      path: '/lobby',
+      name: 'lobby',
+      component: lobby
     },
     {
       path: '/Placeship',

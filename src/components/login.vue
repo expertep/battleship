@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="login--container">
+  <div class="login-container">
     <div v-if="!isReady" class="">
       Loading...
     </div>

@@ -13,10 +13,15 @@ let config = {
   messagingSenderId: '211714676183'
 }
 var firebaseApp = firebase.initializeApp(config)
-
+let provider = new firebase.auth.FacebookAuthProvider()
+provider.addScope('public_profile')
+provider.setCustomParameters({
+  'display': 'popup'
+})
 var db = firebaseApp.database()
 var shipsetRef = db.ref('boards')
-
+var roomsRef = db.ref('rooms')
+var playersRef = db.ref('players')
 Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
@@ -28,9 +33,12 @@ export const store = new Vuex.Store({
       A: 0,
       B: 0
     },
+    displayName: '',
+    photoURL: '',
+    rooms: [],
     positionOwn: [],
     positionEnemy: [],
-    isReady: false,
+    isReady: true,
     user: {},
     userProfile: {}
   },
@@ -42,6 +50,8 @@ export const store = new Vuex.Store({
     Ownsea: state => state.positionOwn,
     Enemysea: state => state.positionEnemy,
     score: state => state.score,
+    rooms: state => state.rooms,
+    me: state => state.me,
     getEnemy (state) {
       shipsetRef.child(state.boardOnplay + '/positionA').on('value', function (snapshot) {
         state.position = snapshot.val()
@@ -73,6 +83,12 @@ export const store = new Vuex.Store({
     },
     setScore (state, obj) {
       state.score = obj
+    },
+    setRoom (state, obj) {
+      state.rooms = obj
+    },
+    setKeyplayer (state, id) {
+      state.me = id
     },
     ...firebaseMutations
   },
@@ -119,6 +135,14 @@ export const store = new Vuex.Store({
     setbombFirebase: function (context, xy) {
       shipsetRef.child(this.state.boardOnplay + '/positionB/' + xy.y + '/' + xy.x + '/bombstatus').set(true)
     },
+    getroom: function (context) {
+      roomsRef.on('value', function (snapshot) {
+        context.commit('setRoom', snapshot.val())
+      },
+      function (error) {
+        console.log('Error: ' + error.code)
+      })
+    },
     init ({ commit, dispatch, bindFirebaseRef }) {
       firebase.auth().onAuthStateChanged((user) => {
         if (user && user.uid) {
@@ -137,12 +161,30 @@ export const store = new Vuex.Store({
         }
       })
     },
-    login () {
-      let provider = new firebase.auth.FacebookAuthProvider()
-      firebase.auth().signInWithRedirect(provider)
+    login (context) {
+      var vm = this
+      firebase.auth().signInWithPopup(provider).then(function (result) {
+        var user = result.user
+        vm.displayName = user.displayName
+        vm.photoURL = user.photoURL
+        var tmp = {
+          name: user.displayName,
+          picture: user.photoURL,
+          fb: user.providerData[0],
+          boardOnplay: ''
+        }
+        playersRef.child(user.uid).set(tmp)
+        context.commit('setKeyplayer', user.uid)
+        context.commit('setUser', tmp)
+        router.push('/lobby')
+      }).catch(function (error) {
+        console.log(error)
+      })
     },
-    logout () {
+    logout (context) {
       firebase.auth().signOut()
+      context.user = null
+      context.me = ''
     },
     setUserProfileRef: firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, id) => {
         // this will unbind any previously bound ref to 'todos'
