@@ -26,15 +26,17 @@
       <div class="column">
         <input type="button " value="Play" class="button is-danger" @click="startgame()">
       </div>
+
+      <div class="ready">
+        <button class="button is-primary is-large" @click="Playgame()">READY</button>
+      </div>
     </div>
-    <br>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 export default {
-  name: 'Placeship',
   data () {
     return {
       boardOnplay: '0011',
@@ -101,7 +103,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .photo-url {
   width: 48px;

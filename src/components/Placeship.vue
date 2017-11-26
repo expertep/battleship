@@ -7,7 +7,7 @@
       <div class="column is-half is-narrow">
         <table>
         	<tr v-for="i in 10">
-            	<td v-for="j in 10" :style="" @click="show(j-1,i-1)">
+            	<td v-for="j in 10" @click="show(j-1,i-1)">
                 <img v-if="showship(j-1,i-1)" src="../assets/ship.png" class="img">
               </td>
           </tr>
@@ -61,134 +61,17 @@ export default {
       boardOnplay: '0011',
       countship: [3, 2, 1],
       hidemenu: [true, true, true],
-      position: [
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ],
-        [
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false},
-          {shipstatus: false, bombstatus: false}
-        ]
-      ]
+      position: []
     }
   },
   methods: {
     ...mapActions([
       'setShipFirebase'
     ]),
+    createMap () {
+      let map = new Array(10).fill(0).map(row => new Array(10).fill({shipstatus: false, bombstatus: false}))
+      return JSON.parse(JSON.stringify(map))
+    },
     show (j, i) {
       for (let x = 0; x < this.x; x++) {
         if (j + x >= 10 || this.position[j + x][i].shipstatus) {
@@ -254,19 +137,8 @@ export default {
   firebase: {
   },
   created () {
-    /* for (var i = 0; i < 10; i++) {
-      this.position.push([])
-      this.position[i].push(new Array(10))
-      for (var j = 0; j < 10; j++) {
-        this.position[i][j] = {
-          shipstatus: false
-        }
-        console.log(this.position[i][j].shipstatus)
-      }
-    } */
-
+    this.position = this.createMap()
   }
-
 }
 </script>
 
