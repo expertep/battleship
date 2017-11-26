@@ -14,7 +14,7 @@
         <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
         <h2 class="subtitle has-text-light">{{user.name}}</h2>
         <h2 class="subtitle has-text-primary">{{roomId}}</h2>
-        <div class="control" >
+        <div class="control">
           <input type="button " value="Ready" class="button is-link">
         </div>
       </div>
