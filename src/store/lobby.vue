@@ -1,0 +1,68 @@
+<template>
+  <div class="hello">
+    <h1 class="title has-text-light">Battle Ship Game </h1>
+      <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
+      <h2 class="subtitle has-text-light">{{user.name}}</h2>
+      <h2 class="subtitle has-text-primary">choose room to play</h2>
+      <div v-for="(room, key) in rooms" :key="room['.key']">
+        <h2>
+          <button class="button is-primary" @click="setroomId(key)">{{room.name}}</button>
+          
+        </h2>
+      </div>
+      <div class="control" >
+        <center>
+        <router-link to="CreateRoom">
+        <input type="button " value="create room" class="button is-link">
+        </router-link>
+        </center>
+      </div>
+    <br>
+  </div>
+</template>
+
+<script>
+import { mapGetters, mapActions } from 'vuex'
+export default {
+  name: 'Placeship',
+  data () {
+    return {
+      boardOnplay: '0011'
+    }
+  },
+  methods: {
+    ...mapActions([
+      'getroom',
+      'init',
+      'joinroomfirebase'
+    ]),
+    setroomId (key) {
+      this.joinroomfirebase(key)
+      this.$router.push({name: 'room', params: {roomId: key}})
+      // this.$router.push('room/')
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'rooms',
+      'user'
+    ]),
+    undaterooms () {
+      this.getroom()
+    }
+  },
+  created () {
+    this.getroom()
+    this.init()
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+  .photo-url {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+}
+</style>

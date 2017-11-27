@@ -164,7 +164,8 @@ export const store = new Vuex.Store({
     userProfile: {},
     party: {},
     statusplayer: '',
-    statuscoplayer: ''
+    statuscoplayer: '',
+    statusinRoom: ''
   },
   getters: {
     user: state => state.user,
@@ -176,7 +177,8 @@ export const store = new Vuex.Store({
     rooms: state => state.rooms,
     me: state => state.me,
     Players: state => state.Players,
-    party: state => state.party
+    party: state => state.party,
+    roomId: state => state.roomId
   },
   mutations: {
     setUser (state, user) {
@@ -218,20 +220,28 @@ export const store = new Vuex.Store({
       var tmp = {
         own: obj.own,
         playerB: obj.playerB,
-        positionA: this.positionOwn,
-        positionB: this.positionOwn,
+        positionA: this.state.positionOwn,
+        positionB: this.state.positionOwn,
         scoreA: 0,
         scoreB: 0,
         turn: 0
       }
       var key = shipsetRef.push(tmp).getKey()
-      playersRef.child(this.state.me + '/boardOnplay').push(key)
+      playersRef.child(this.state.me + '/boardOnplay').set(key)
       var str = 'positionA'
       if (this.state.me !== obj.own) str = 'positionB'
       context.commit('setstatusplayer', str)
     },
     deleteRoom: function (context, id) {
       roomsRef.child(id).set(null)
+    },
+    getstatusplayerfirebase: function (context, obj) {
+      var tmp = 'statusA'
+      var tmp1
+      if (this.state.me !== this.state.party.own) tmp = 'statusB'
+      if (obj.str === 'Wait') tmp1 = 'Ready'
+      else tmp1 = 'Wait'
+      roomsRef.child(obj.id + '/' + tmp).set(tmp1)
     },
     outRoom: function (context, id, sign) {
       if (sign === 'A') {
@@ -286,11 +296,12 @@ export const store = new Vuex.Store({
       var tmp = {
         name: name,
         own: this.state.me,
-        playerB: ''
+        playerB: '',
+        statusA: 'Wait',
+        statusB: 'Wait'
       }
       var key = roomsRef.push(tmp).getKey()
       context.commit('setroomId', key)
-      return key
     },
     getScore: function (context, obj) {
       var tmp = {

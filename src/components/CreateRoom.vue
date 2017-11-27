@@ -47,19 +47,16 @@ export default {
       'init',
       'setRoom'
     ]),
-    setroomId (key) {
-      console.log(key)
-      // this.$router.push('room/')
-    },
     CreateRoom () {
-      var tmp = this.setRoom(this.name)
-      this.$router.push({name: 'room', params: {roomId: tmp}})
+      this.setRoom(this.name)
+      this.$router.push({name: 'room', params: {roomId: this.roomId}})
     }
   },
   computed: {
     ...mapGetters([
       'rooms',
-      'user'
+      'user',
+      'roomId'
     ]),
     undaterooms () {
       this.getroom()
