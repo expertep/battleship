@@ -3,6 +3,7 @@
     <h1 class="title has-text-light">Battle Ship Game </h1>
       <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
       <h2 class="subtitle has-text-light">{{user.name}}</h2>
+      {{me}}
       <h2 class="subtitle has-text-primary">choose room to play</h2>
       <div v-for="(room, key) in rooms" :key="room['.key']">
         <h2>
@@ -34,7 +35,8 @@ export default {
     ...mapActions([
       'getroom',
       'init',
-      'joinroomfirebase'
+      'joinroomfirebase',
+      'deleteBoard'
     ]),
     setroomId (key) {
       this.joinroomfirebase(key)
@@ -45,15 +47,19 @@ export default {
   computed: {
     ...mapGetters([
       'rooms',
-      'user'
+      'user',
+      'me'
     ]),
     undaterooms () {
       this.getroom()
     }
   },
+  mounted () {
+    this.init()
+  },
   created () {
     this.getroom()
-    this.init()
+    this.deleteBoard()
   }
 }
 </script>

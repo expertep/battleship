@@ -27,20 +27,16 @@
       </div>
     </div>
     <br><br>
-    <div class="columns is-mobile is-centered menu" v-if="score==16">
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-primary is-large" @click="">Finish</button>
-        </div>
-      </div>
-    </div>
   <br>
-  <div class="modal">
+  <div v-if="score.A == 16 || score.B==16" class="modal is-active">
     <div class="modal-background"></div>
     <div class="modal-content">
-      <!-- Any other Bulma elements you want -->
+      <h1 v-if="score.A == 16" class="title has-text-light">You win</h1>
+      <h1 v-if="score.B == 16" class="title has-text-light">You lose</h1>
+      <button class="button is-primary is-large" @click="this.$router.push('looby')">Finish</button>
     </div>
     <button class="modal-close is-large" aria-label="close"></button>
+    </div>
   </div>
   </div>
 </template>

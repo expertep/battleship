@@ -285,6 +285,9 @@ export const store = new Vuex.Store({
       else tmp1 = 'Wait'
       roomsRef.child(obj.id + '/' + tmp).set(tmp1)
     },
+    deleteBoard: function (context) {
+
+    },
     outRoom: function (context, id, sign) {
       if (sign === 'A') {
         roomsRef.child(id + '/playerA').set('')
@@ -421,6 +424,8 @@ export const store = new Vuex.Store({
       function (error) {
         console.log('Error: ' + error.code)
       })
+      console.log('me' + this.state.me)
+      playersRef.child(this.state.me + '/boardOnplay').set('')
     },
     init ({ commit, dispatch, bindFirebaseRef }) {
       firebase.auth().onAuthStateChanged((user) => {
