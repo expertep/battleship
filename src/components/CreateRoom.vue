@@ -54,17 +54,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'rooms',
-      'user',
       'roomId'
-    ]),
-    undaterooms () {
-      this.getroom()
-    }
-  },
-  created () {
-    this.init()
-    this.getroom()
+    ])
   }
 }
 </script>

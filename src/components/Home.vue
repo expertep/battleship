@@ -41,15 +41,11 @@ export default {
     ...mapActions([
       'logout',
       'login',
-      'init',
-      'setOffline'
+      'init'
     ])
   },
   created () {
     this.init()
-  },
-  beforeDestroy () {
-    // this.setOffline()
   }
 }
 </script>

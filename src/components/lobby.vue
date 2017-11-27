@@ -1,8 +1,11 @@
 <template>
   <div class="hello">
     <h1 class="title has-text-light">Battle Ship Game </h1>
-      <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
-      <h2 class="subtitle has-text-light">{{user.name}}</h2>
+      <div v-if="user">
+        <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
+        <h2 class="subtitle has-text-light">{{user.name}}</h2>
+      </div>
+
       <h2 class="subtitle has-text-primary">choose room to play</h2>
       <div v-for="(room, key) in rooms" :key="room['.key']">
         <h2>
@@ -33,27 +36,23 @@ export default {
   methods: {
     ...mapActions([
       'getroom',
-      'init',
-      'joinroomfirebase'
+      'joinroomfirebase',
+      'deleteBoard'
     ]),
     setroomId (key) {
       this.joinroomfirebase(key)
       this.$router.push({name: 'room', params: {roomId: key}})
-      // this.$router.push('room/')
     }
   },
   computed: {
     ...mapGetters([
       'rooms',
       'user'
-    ]),
-    undaterooms () {
-      this.getroom()
-    }
+    ])
   },
   created () {
     this.getroom()
-    this.init()
+    this.deleteBoard()
   }
 }
 </script>

@@ -254,29 +254,6 @@ export const store = new Vuex.Store({
     deleteRoom: function (context, id) {
       roomsRef.child(id).set(null)
     },
-    getstatefirebase: function (context) {
-      var tmp = {
-        status: 'positionA',
-        score: 'scoreA',
-        statusco: 'positionB',
-        scoreco: 'scoreB'
-      }
-      shipsetRef.child(this.state.boardOnplay + '/own').on('value', function (snapshot) {
-        if (this.state.me !== snapshot.val()) {
-          tmp = {
-            status: 'positionB',
-            score: 'scoreB',
-            statusco: 'positionA',
-            scoreco: 'scoreA'
-          }
-        }
-      },
-      function (error) {
-        console.log('Error: ' + error.code)
-      })
-      context.commit('setstatusplayer', tmp)
-      // console.log(str)
-    },
     getstatusplayerfirebase: function (context, obj) {
       var tmp = 'statusA'
       var tmp1
@@ -286,7 +263,7 @@ export const store = new Vuex.Store({
       roomsRef.child(obj.id + '/' + tmp).set(tmp1)
     },
     deleteBoard: function (context) {
-
+      playersRef.child(this.state.me + '/boardOnplay').set('')
     },
     outRoom: function (context, id, sign) {
       if (sign === 'A') {
@@ -304,6 +281,7 @@ export const store = new Vuex.Store({
       }
     },
     loadPlayer: function (context, id) {
+      console.log(id)
       var tmp = {
         playerA: {},
         playerB: {}

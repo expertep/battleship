@@ -68,8 +68,7 @@ export default {
     ...mapActions([
       'setShipFirebase',
       'getBoard',
-      'init',
-      'getstatefirebase'
+      'init'
     ]),
     createMap () {
       let map = new Array(10).fill(0).map(row => new Array(10).fill({shipstatus: false, bombstatus: false}))
@@ -142,17 +141,11 @@ export default {
       'me',
       'statusplayer',
       'Players'
-    ]),
-    getId () {
-      this.id = this.me
-    }
+    ])
   },
   created () {
-    this.init()
     this.position = this.createMap()
     this.getBoard()
-    console.log(this.id)
-    // this.getstatefirebase()
   }
 }
 </script>

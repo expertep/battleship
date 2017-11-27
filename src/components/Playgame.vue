@@ -33,9 +33,7 @@
     <div class="modal-content">
       <h1 v-if="score.A == 16" class="title has-text-light">You win</h1>
       <h1 v-if="score.B == 16" class="title has-text-light">You lose</h1>
-      <button class="button is-primary is-large" @click="this.$router.push('looby')">Finish</button>
-    </div>
-    <button class="modal-close is-large" aria-label="close"></button>
+      <button class="button is-primary is-large" @click="finish()">Finish</button>
     </div>
   </div>
   </div>
@@ -74,6 +72,9 @@ export default {
       }
       this.setbombFirebase(xy)
     },
+    finish () {
+      this.$router.push('')
+    },
     showconsole (x, y) {
       console.log(x + ',' + y)
     },
@@ -107,7 +108,6 @@ export default {
 
   },
   created () {
-    this.init()
     this.getBoard()
     this.getOwn()
     this.getEnemy()
