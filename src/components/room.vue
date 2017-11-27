@@ -5,14 +5,14 @@
     <div class="columns is-centered roomplayer">
       <div class="column">
          <h1>head</h1>
-        <img :src="Players.playerA.picture" class="photo-url" alt="">
+        <img v-if="Players.playerA.picture" :src="Players.playerA.picture" class="photo-url" alt="">
         <h2 class="subtitle has-text-light">{{Players.playerA.name}}</h2>
         <h2 class="subtitle has-text-primary"></h2>
         <input type="button" :value="party.statusA" :class="setClass(party.own)" @click="statusplayer(party.statusA)">
       </div>
       <div class="column">
         <div v-if="party.playerB">
-          <img :src="Players.playerB.picture" class="photo-url" alt="">
+          <img v-if="Players.playerB.picture" :src="Players.playerB.picture" class="photo-url" alt="">
           <h2 class="subtitle has-text-light">{{Players.playerB.name}}</h2>
           <h2 class="subtitle has-text-primary"></h2>
           <input type="button" :value="party.statusB" :class="setClass(party.playerB)" @click="statusplayer(party.statusB)">
@@ -56,7 +56,7 @@ export default {
       this.updateparty(this.roomId)
     },
     startgame () {
-      if (this.Players.playerB.boardOnplay || this.Players.playerA.boardOnplay ) {
+      if (this.Players.playerB.boardOnplay || this.Players.playerA.boardOnplay) {
         window.location.replace('#/placeship')
       } else {
         this.createBoard(this.party)
@@ -81,7 +81,7 @@ export default {
       this.updateparty(this.roomId)
     },
     updateplayer () {
-      this.loadPlayer(this.roomId)
+      // this.loadPlayer(this.roomId)
     }
   },
   created () {

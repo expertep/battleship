@@ -51,14 +51,13 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Placeship',
   data () {
     return {
       x: 0,
       y: 0,
-      boardOnplay: '0011',
       countship: [3, 2, 1],
       hidemenu: [true, true, true],
       position: []
@@ -67,7 +66,9 @@ export default {
   methods: {
     ...mapActions([
       'setShipFirebase',
-      'getBoard'
+      'getBoard',
+      'init',
+      'getstatefirebase'
     ]),
     createMap () {
       let map = new Array(10).fill(0).map(row => new Array(10).fill({shipstatus: false, bombstatus: false}))
@@ -135,11 +136,18 @@ export default {
       } else return 'button is-primary is-large'
     }
   },
-  firebase: {
+  computed: {
+    ...mapGetters([
+      'me',
+      'statusplayer',
+      'Players'
+    ])
   },
   created () {
+    this.init()
     this.position = this.createMap()
     this.getBoard()
+    // this.getstatefirebase()
   }
 }
 </script>

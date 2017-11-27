@@ -239,6 +239,18 @@ export const store = new Vuex.Store({
     deleteRoom: function (context, id) {
       roomsRef.child(id).set(null)
     },
+    getstatefirebase: function (context) {
+      var str = 'positionA'
+      shipsetRef.child(this.state.boardOnplay + '/own').on('value', function (snapshot) {
+        console.log(this.state.me + '1')
+        if (this.state.me !== snapshot.val()) str = 'positionB'
+      },
+      function (error) {
+        console.log('Error: ' + error.code)
+      })
+      context.commit('setstatusplayer', str)
+      // console.log(str)
+    },
     getstatusplayerfirebase: function (context, obj) {
       var tmp = 'statusA'
       var tmp1
@@ -308,8 +320,15 @@ export const store = new Vuex.Store({
       context.commit('setroomId', key)
     },
     getBoard: function (context) {
-      shipsetRef.child(this.state.me + '/boardOnplay').on('value', function (snapshot) {
+      var idMe = this.state.me
+      playersRef.child(idMe + '/boardOnplay').on('value', function (snapshot) {
         context.commit('setboard', snapshot.val())
+        shipsetRef.child(snapshot.val() + '/own').on('value', function (snapshot1) {
+          var str = 'positionA'
+          if (idMe !== snapshot1.val()) str = 'positionB'
+          context.commit('setstatusplayer', str)
+          console.log(str)
+        })
       })
     },
     getScore: function (context, obj) {
@@ -349,7 +368,8 @@ export const store = new Vuex.Store({
       })
     },
     setShipFirebase: function (context, xy) {
-      shipsetRef.child(this.state.boardOnplay + '/' + this.state.boardOnplay + '/' + xy.y + '/' + xy.x + '/shipstatus').set(true)
+      console.log(this.state.boardOnplay)
+      shipsetRef.child(this.state.boardOnplay + '/' + this.state.statusplayer + '/' + xy.y + '/' + xy.x + '/shipstatus').set(true)
     },
     setbombFirebase: function (context, xy) {
       shipsetRef.child(this.state.boardOnplay + '/' + this.state.statuscoplayer + '/' + xy.y + '/' + xy.x + '/bombstatus').set(true)
@@ -377,7 +397,6 @@ export const store = new Vuex.Store({
           // router.push('/')
         } else {
           commit('setUser', null)
-          // router.push('/login')
         }
       })
     },
