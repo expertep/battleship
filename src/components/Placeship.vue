@@ -60,7 +60,8 @@ export default {
       y: 0,
       countship: [3, 2, 1],
       hidemenu: [true, true, true],
-      position: []
+      position: [],
+      id: ''
     }
   },
   methods: {
@@ -141,12 +142,16 @@ export default {
       'me',
       'statusplayer',
       'Players'
-    ])
+    ]),
+    getId () {
+      this.id = this.me
+    }
   },
   created () {
     this.init()
     this.position = this.createMap()
     this.getBoard()
+    console.log(this.id)
     // this.getstatefirebase()
   }
 }

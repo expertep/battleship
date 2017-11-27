@@ -37,7 +37,7 @@ export default {
   name: 'Placeship',
   data () {
     return {
-      boardOnplay: '0011',
+      boardOnplay: '',
       name: ''
     }
   },

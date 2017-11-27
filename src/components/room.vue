@@ -33,7 +33,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      boardOnplay: '0011',
+      boardOnplay: '',
       roomId: ''
     }
   },
