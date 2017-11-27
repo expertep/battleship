@@ -208,6 +208,9 @@ export const store = new Vuex.Store({
     setPlayer (state, obj) {
       state.Players = obj
     },
+    setboard (state, id) {
+      state.boardOnplay = id
+    },
     setstatusplayer (state, str) {
       state.statusplayer = str
       if (str === 'positionA') state.statuscoplayer = 'positionB'
@@ -227,7 +230,8 @@ export const store = new Vuex.Store({
         turn: 0
       }
       var key = shipsetRef.push(tmp).getKey()
-      playersRef.child(this.state.me + '/boardOnplay').set(key)
+      playersRef.child(obj.own + '/boardOnplay').set(key)
+      playersRef.child(obj.playerB + '/boardOnplay').set(key)
       var str = 'positionA'
       if (this.state.me !== obj.own) str = 'positionB'
       context.commit('setstatusplayer', str)
@@ -302,6 +306,11 @@ export const store = new Vuex.Store({
       }
       var key = roomsRef.push(tmp).getKey()
       context.commit('setroomId', key)
+    },
+    getBoard: function (context) {
+      shipsetRef.child(this.state.me + '/boardOnplay').on('value', function (snapshot) {
+        context.commit('setboard', snapshot.val())
+      })
     },
     getScore: function (context, obj) {
       var tmp = {

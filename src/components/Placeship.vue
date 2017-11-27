@@ -66,7 +66,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'setShipFirebase'
+      'setShipFirebase',
+      'getBoard'
     ]),
     createMap () {
       let map = new Array(10).fill(0).map(row => new Array(10).fill({shipstatus: false, bombstatus: false}))
@@ -138,6 +139,7 @@ export default {
   },
   created () {
     this.position = this.createMap()
+    this.getBoard()
   }
 }
 </script>

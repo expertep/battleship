@@ -56,9 +56,13 @@ export default {
       this.updateparty(this.roomId)
     },
     startgame () {
-      this.createBoard(this.party)
-      this.deleteRoom(this.roomId)
-      window.location.replace('#/placeship')
+      if (this.Players.playerB.boardOnplay || this.Players.playerA.boardOnplay ) {
+        window.location.replace('#/placeship')
+      } else {
+        this.createBoard(this.party)
+        this.deleteRoom(this.roomId)
+        window.location.replace('#/placeship')
+      }
     },
     setClass (id) {
       if (this.me === id) {
@@ -78,12 +82,6 @@ export default {
     },
     updateplayer () {
       this.loadPlayer(this.roomId)
-    },
-    already () {
-      console.log(1)
-      if (this.party.statusA === 'Ready' && this.party.statusB === 'Ready') {
-        this.startgame()
-      }
     }
   },
   created () {
