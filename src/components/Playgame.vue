@@ -3,7 +3,7 @@
     <h1 class="title has-text-light">Battleship</h1>
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
     <div class="columns is-mobile">
-      <div class="column is-three-fifths is-offset-one-fifth has-text-centered">
+      <div class="column is-three-fifths is-offset-one-fifth">
         <div class="tags has-addons">
           <span :class="setClassturn(statusplayer)">
             <h2 class="subtitle has-text-light has-text-weight-light">
