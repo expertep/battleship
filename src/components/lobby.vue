@@ -8,10 +8,7 @@
 
       <h2 class="subtitle has-text-primary">choose room to play</h2>
       <div v-for="(room, key) in rooms" :key="room['.key']">
-        <h2>
-          <button class="button is-primary" @click="setroomId(key)">{{room.name}}</button>
-          
-        </h2>
+          <button class="button is-primary" @click="setroomId(key)" v-if="!room.playerB">{{room.name}}</button>
       </div>
       <div class="control" >
         <center>

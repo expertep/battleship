@@ -167,7 +167,8 @@ export const store = new Vuex.Store({
     statuscoplayer: '',
     statusinRoom: '',
     scoreplayer: '',
-    scorecoplayer: ''
+    scorecoplayer: '',
+    turn: 'positionA'
   },
   getters: {
     user: state => state.user,
@@ -180,7 +181,10 @@ export const store = new Vuex.Store({
     me: state => state.me,
     Players: state => state.Players,
     party: state => state.party,
-    roomId: state => state.roomId
+    roomId: state => state.roomId,
+    statusplayer: state => state.statusplayer,
+    statuscoplayer: state => state.statuscoplayer,
+    turn: state => state.turn
   },
   mutations: {
     setUser (state, user) {
@@ -219,18 +223,24 @@ export const store = new Vuex.Store({
       state.statuscoplayer = obj.statusco
       state.scorecoplayer = obj.scoreco
     },
+    setturn (state, str) {
+      state.turn = str
+    },
     ...firebaseMutations
   },
   actions: {
     createBoard: function (context, obj) {
+      // this.state.positionOwn = []
+      // this.state.positionEnemy = []
+      let arr = new Array(10).fill(0).map(row => new Array(10).fill({shipstatus: false, bombstatus: false}))
       var tmp = {
         own: obj.own,
         playerB: obj.playerB,
-        positionA: this.state.positionOwn,
-        positionB: this.state.positionOwn,
+        positionA: arr,
+        positionB: arr,
         scoreA: 0,
         scoreB: 0,
-        turn: 0
+        turn: 'positionA'
       }
       var key = shipsetRef.push(tmp).getKey()
       playersRef.child(obj.own + '/boardOnplay').set(key)
@@ -281,7 +291,6 @@ export const store = new Vuex.Store({
       }
     },
     loadPlayer: function (context, id) {
-      console.log(id)
       var tmp = {
         playerA: {},
         playerB: {}
@@ -328,9 +337,14 @@ export const store = new Vuex.Store({
     },
     getBoard: function (context) {
       var idMe = this.state.me
-      console.log(idMe)
       playersRef.child(idMe + '/boardOnplay').on('value', function (snapshot) {
         context.commit('setboard', snapshot.val())
+        shipsetRef.child(snapshot.val() + '/turn').on('value', function (snapshot2) {
+          context.commit('setturn', snapshot2.val())
+        },
+        function (error) {
+          console.log('Error: ' + error.code)
+        })
         shipsetRef.child(snapshot.val() + '/own').on('value', function (snapshot1) {
           var tmp1 = {
             status: 'positionA',
@@ -380,7 +394,6 @@ export const store = new Vuex.Store({
       })
     },
     getOwn: function (context) {
-      console.log(this.state.boardOnplay)
       shipsetRef.child(this.state.boardOnplay + '/' + this.state.statusplayer).on('value', function (snapshot) {
         context.commit('setpositionOwn', snapshot.val())
       },
@@ -389,7 +402,6 @@ export const store = new Vuex.Store({
       })
     },
     setShipFirebase: function (context, xy) {
-      console.log(this.state.boardOnplay)
       shipsetRef.child(this.state.boardOnplay + '/' + this.state.statusplayer + '/' + xy.y + '/' + xy.x).update({shipstatus: true})
     },
     setbombFirebase: function (context, xy) {
@@ -402,13 +414,20 @@ export const store = new Vuex.Store({
       function (error) {
         console.log('Error: ' + error.code)
       })
-      console.log('me' + this.state.me)
       playersRef.child(this.state.me + '/boardOnplay').set('')
+    },
+    changeturn: function (context, turn) {
+      if (this.state.statusplayer === 'positionA') {
+        shipsetRef.child(this.state.boardOnplay + '/turn').set('positionB')
+        context.commit('setturn', 'positionB')
+      } else {
+        shipsetRef.child(this.state.boardOnplay + '/turn').set('positionA')
+        context.commit('setturn', 'positionA')
+      }
     },
     init ({ commit, dispatch, bindFirebaseRef }) {
       firebase.auth().onAuthStateChanged((user) => {
         if (user && user.uid) {
-          // let { name, picture } = user
           var tmp = {
             name: user.displayName,
             picture: user.photoURL,
@@ -417,7 +436,6 @@ export const store = new Vuex.Store({
           }
           commit('setKeyplayer', user.uid)
           commit('setUser', tmp)
-          // router.push('/')
         } else {
           commit('setUser', null)
         }

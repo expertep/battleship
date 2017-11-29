@@ -2,10 +2,27 @@
   <div class="hello">
     <h1 class="title has-text-light">Battleship</h1>
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
-    <h2 class="subtitle has-text-light">score = {{score.A}} - {{score.B}}</h2>
+    <div class="columns is-mobile">
+      <div class="column is-three-fifths is-offset-one-fifth has-text-centered">
+        <div class="tags has-addons">
+          <span :class="setClassturn(statusplayer)">
+            <h2 class="subtitle has-text-light has-text-weight-light">
+              me {{score.A}}
+            </h2>
+            </span>
+          <span :class="setClassturn(statuscoplayer)">
+            <h2 class="subtitle has-text-light has-text-weight-light">
+              enemy {{score.B}}
+            </h2>
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+
     <div class="columns is-mobile is-centered">
       <div class="column is-6">
-        <h1 class="title has-text-light" v-if="score==16">You win</h1>
         <h2 class="subtitle has-text-light">me</h2>
         <table>
           <tr v-for="(y, indexY) in Ownsea" :key="y['.key']">
@@ -60,20 +77,25 @@ export default {
       'getOwn',
       'getScore',
       'getBoard',
-      'init'
+      'init',
+      'changeturn'
     ]),
     setbomb (x, y, obj) {
-      if (obj.shipstatus && !obj.bombstatus) {
-        this.addScore()
+      if (this.statusplayer === this.turn) {
+        if (obj.shipstatus && !obj.bombstatus) {
+          this.addScore()
+        } else {
+          this.changeturn()
+        }
+        var xy = {
+          x: x,
+          y: y
+        }
+        this.setbombFirebase(xy)
       }
-      var xy = {
-        x: x,
-        y: y
-      }
-      this.setbombFirebase(xy)
     },
     finish () {
-      this.$router.push('')
+      this.$router.push('/lobby')
     },
     showconsole (x, y) {
       console.log(x + ',' + y)
@@ -90,22 +112,24 @@ export default {
       } else {
         return ''
       }
+    },
+    setClassturn (name) {
+      if (name === this.turn) {
+        return 'tag is-success'
+      } else {
+        return 'tag is-dark'
+      }
     }
   },
   computed: {
     ...mapGetters([
       'Ownsea',
       'Enemysea',
-      'score'
-    ]),
-    undatesea () {
-      this.getOwn()
-      this.getEnemy()
-    },
-    undatescore () {
-      this.getScore()
-    }
-
+      'score',
+      'statusplayer',
+      'statuscoplayer',
+      'turn'
+    ])
   },
   created () {
     this.getBoard()
