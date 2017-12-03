@@ -37,7 +37,7 @@
         <table>
           <tr v-for="(y, indexY) in Enemysea" :key="y['.key']">
             <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY,x)" :class="setClass(x)">
-              <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
+              <img v-if="x.bombstatus && x.shipstatus" src="../assets/ship.png" class="img">
             </td>
           </tr>
         </table>

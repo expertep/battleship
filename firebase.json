@@ -1,34 +1,886 @@
 {
-  "boards":{
-    "0011":
-    {
-      "own":"011","co":"012","turn":"1","scoreA":0,"scoreB":0,
-      "positionA":[[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}]],
-    "positionB":[[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}],[{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false},{"shipstatus":false,"bombstatus":false}]]
-
-
-    }
-
-},
-  "players":{
-    "011":{
-    "free":false,
-    "boardOnplay":"0011"
-    },
-    "012":{
-      "free":false,
-      "boardOnplay":"0011"
+  "boards": {
+    "0011": {
+      "own": "011",
+      "co": "012",
+      "turn": "1",
+      "scoreA": 0,
+      "scoreB": 0,
+      "positionA": [
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ]
+      ],
+      "positionB": [
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ],
+        [
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          },
+          {
+            "shipstatus": false,
+            "bombstatus": false
+          }
+        ]
+      ]
     }
   },
-  "rooms":{
-    "001":{
-      "name":"room39",
-      "own":"011"
+  "players": {
+    "011": {
+      "free": false,
+      "boardOnplay": "0011"
     },
-    "002":{
-      "name":"room40",
-      "own":"012"
+    "012": {
+      "free": false,
+      "boardOnplay": "0011"
     }
+  },
+  "rooms": {
+    "001": {
+      "name": "room39",
+      "own": "011"
+    },
+    "002": {
+      "name": "room40",
+      "own": "012"
+    }
+  },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
   }
-
 }
