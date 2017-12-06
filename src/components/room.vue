@@ -19,7 +19,7 @@
     </div>
     <div class="columns">
       <div class="column">
-        <input type="button " value="Play" class="button is-danger" @click="startgame()">
+        <input type="button " value="Play" :class="setClassplay(party.statusA,party.statusB)" @click="startgame()">
       </div>
     </div>
   </div>
@@ -64,6 +64,11 @@ export default {
       if (this.me === id) {
         return 'button is-link is-center'
       } else return 'button is-link is-center is-static'
+    },
+    setClassplay (A, B) {
+      if (A === 'Ready' && B === 'Ready') {
+        return 'button is-link is-center is-danger'
+      } else return 'button is-link is-center is-static'
     }
   },
   computed: {
@@ -72,7 +77,10 @@ export default {
       'user',
       'Players',
       'me'
-    ])
+    ]),
+    start () {
+      console.log(this.party)
+    }
   },
   created () {
     this.roomId = this.$route.params.roomId

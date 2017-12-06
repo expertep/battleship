@@ -230,8 +230,6 @@ export const store = new Vuex.Store({
   },
   actions: {
     createBoard: function (context, obj) {
-      // this.state.positionOwn = []
-      // this.state.positionEnemy = []
       let arr = new Array(10).fill(0).map(row => new Array(10).fill({shipstatus: false, bombstatus: false}))
       var tmp = {
         own: obj.own,
