@@ -261,6 +261,7 @@ export const store = new Vuex.Store({
     },
     deleteRoom: function (context, id) {
       roomsRef.child(id).set(null)
+      window.location.replace('#/placeship')
     },
     getstatusplayerfirebase: function (context, obj) {
       var tmp = 'statusA'
@@ -295,9 +296,11 @@ export const store = new Vuex.Store({
       }
       roomsRef.child(id).on('value', function (snapshot) {
         var room = snapshot.val()
-        playersRef.child(room.own).on('value', function (snapshot) {
-          tmp.playerA = snapshot.val()
-        })
+        if (room.own) {
+          playersRef.child(room.own).on('value', function (snapshot) {
+            tmp.playerA = snapshot.val()
+          })
+        }
         if (room.playerB) {
           playersRef.child(room.playerB).on('value', function (snapshot) {
             tmp.playerB = snapshot.val()
@@ -367,7 +370,6 @@ export const store = new Vuex.Store({
         A: 0,
         B: 0
       }
-      console.log(this.state.scoreplayer)
       shipsetRef.child(this.state.boardOnplay + '/' + this.state.scoreplayer).on('value', function (snapshot) {
         tmp.A = snapshot.val()
       })

@@ -18,9 +18,6 @@
         </div>
       </div>
     </div>
-
-
-
     <div class="columns is-mobile is-centered">
       <div class="column is-6">
         <h2 class="subtitle has-text-light">me</h2>

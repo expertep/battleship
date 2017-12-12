@@ -1,6 +1,6 @@
 <template>
   <div class="room">
-    <h1 class="title has-text-light">Battle Ship Game </h1>
+    <h1 class="title has-text-light">BattleShip Game </h1>
     <h1 class="title has-text-light">{{party.name}}</h1>
     <div class="columns is-centered roomplayer">
       <div class="column" v-if="Players.playerA">
@@ -53,10 +53,10 @@ export default {
     },
     startgame () {
       if (this.Players.playerB.boardOnplay || this.Players.playerA.boardOnplay) {
-        window.location.replace('#/placeship')
-      } else {
-        this.createBoard(this.party)
         this.deleteRoom(this.roomId)
+      } else {
+        console.log(1)
+        this.createBoard(this.party)
         window.location.replace('#/placeship')
       }
     },
@@ -77,10 +77,7 @@ export default {
       'user',
       'Players',
       'me'
-    ]),
-    start () {
-      console.log(this.party)
-    }
+    ])
   },
   created () {
     this.roomId = this.$route.params.roomId

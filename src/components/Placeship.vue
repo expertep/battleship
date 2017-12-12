@@ -129,9 +129,6 @@ export default {
       }
       this.$router.push('Playgame')
     },
-    showconsole (y, x) {
-      console.log(y + ',' + x)
-    },
     showship (x, y) {
       return this.position[x][y].shipstatus
     },
