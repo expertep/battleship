@@ -249,7 +249,7 @@ export const store = new Vuex.Store({
         statusco: 'positionB',
         scoreco: 'scoreB'
       }
-      if (this.state.me !== obj.own) {
+      if (context.state.me !== obj.own) {
         tmp1 = {
           status: 'positionB',
           score: 'scoreB',
@@ -267,17 +267,17 @@ export const store = new Vuex.Store({
     getstatusplayerfirebase: function (context, obj) {
       var tmp = 'statusA'
       var tmp1
-      if (this.state.me !== this.state.party.own) tmp = 'statusB'
+      if (context.state.me !== context.state.party.own) tmp = 'statusB'
       if (obj.str === 'Wait') tmp1 = 'Ready'
       else tmp1 = 'Wait'
       roomsRef.child(obj.id + '/' + tmp).set(tmp1)
     },
     outRoom: function (context, id, me) {
-      roomsRef.child(id + '/playerB').on('value', function (snapshot) {
-        console.log(snapshot.val() + ' * ' + me)
+      roomsRef.child(id + '/playerB').once('value', function (snapshot) {
+        console.log(snapshot.val() + ' * ' + id + ' * ' + context.state.me)
         if (!snapshot.val()) {
           roomsRef.child(id).set(null)
-        } else if (snapshot.val() === me) {
+        } else if (snapshot.val() === context.state.me) {
           roomsRef.child(id + '/playerB').set('')
         } else {
           roomsRef.child(id + '/own').set(snapshot.val())
@@ -313,7 +313,7 @@ export const store = new Vuex.Store({
       })
     },
     joinroomfirebase: function (context, id) {
-      roomsRef.child(id + '/playerB').set(this.state.me)
+      roomsRef.child(id + '/playerB').set(context.state.me)
       context.commit('setroomId', id)
     },
     updateparty: function (context, roomId) {
@@ -328,7 +328,7 @@ export const store = new Vuex.Store({
     setRoom: function (context, name) {
       var tmp = {
         name: name,
-        own: this.state.me,
+        own: context.state.me,
         playerB: '',
         statusA: 'Wait',
         statusB: 'Wait'
@@ -338,8 +338,7 @@ export const store = new Vuex.Store({
     },
     getBoard: function (context, dispatch) {
       // var idMe = id
-      var idMe = this.state.me
-      console.log(idMe)
+      var idMe = context.state.me
       playersRef.child(idMe + '/boardOnplay').on('value', function (snapshot) {
         context.commit('setboard', snapshot.val())
         shipsetRef.child(snapshot.val() + '/turn').on('value', function (snapshot2) {
@@ -373,23 +372,23 @@ export const store = new Vuex.Store({
         A: 0,
         B: 0
       }
-      shipsetRef.child(this.state.boardOnplay + '/' + this.state.scoreplayer).on('value', function (snapshot) {
+      shipsetRef.child(context.state.boardOnplay + '/' + context.state.scoreplayer).on('value', function (snapshot) {
         tmp.A = snapshot.val()
       })
-      shipsetRef.child(this.state.boardOnplay + '/' + this.state.scorecoplayer).on('value', function (snapshot) {
+      shipsetRef.child(context.state.boardOnplay + '/' + context.state.scorecoplayer).on('value', function (snapshot) {
         tmp.B = snapshot.val()
       })
       context.commit('setScore', tmp)
     },
-    addScore: function () {
+    addScore: function (context) {
       var tmp
-      shipsetRef.child(this.state.boardOnplay + '/' + this.state.scoreplayer).on('value', function (snapshot) {
+      shipsetRef.child(context.state.boardOnplay + '/' + context.state.scoreplayer).on('value', function (snapshot) {
         tmp = snapshot.val()
       })
-      shipsetRef.child(this.state.boardOnplay + '/' + this.state.scoreplayer).set(tmp + 1)
+      shipsetRef.child(context.state.boardOnplay + '/' + context.state.scoreplayer).set(tmp + 1)
     },
     getEnemy: function (context) {
-      shipsetRef.child(this.state.boardOnplay + '/' + this.state.statuscoplayer).on('value', function (snapshot) {
+      shipsetRef.child(context.state.boardOnplay + '/' + context.state.statuscoplayer).on('value', function (snapshot) {
         context.commit('setpositionEnemy', snapshot.val())
       },
       function (error) {
@@ -397,7 +396,7 @@ export const store = new Vuex.Store({
       })
     },
     getOwn: function (context) {
-      shipsetRef.child(this.state.boardOnplay + '/' + this.state.statusplayer).on('value', function (snapshot) {
+      shipsetRef.child(context.state.boardOnplay + '/' + context.state.statusplayer).on('value', function (snapshot) {
         context.commit('setpositionOwn', snapshot.val())
       },
       function (error) {
@@ -405,10 +404,10 @@ export const store = new Vuex.Store({
       })
     },
     setShipFirebase: function (context, xy) {
-      shipsetRef.child(this.state.boardOnplay + '/' + this.state.statusplayer + '/' + xy.y + '/' + xy.x).update({shipstatus: true})
+      shipsetRef.child(context.state.boardOnplay + '/' + context.state.statusplayer + '/' + xy.y + '/' + xy.x).update({shipstatus: true})
     },
     setbombFirebase: function (context, xy) {
-      shipsetRef.child(this.state.boardOnplay + '/' + this.state.statuscoplayer + '/' + xy.y + '/' + xy.x + '/bombstatus').set(true)
+      shipsetRef.child(context.state.boardOnplay + '/' + context.state.statuscoplayer + '/' + xy.y + '/' + xy.x + '/bombstatus').set(true)
     },
     getroom: function (context) {
       roomsRef.on('value', function (snapshot) {
@@ -417,14 +416,13 @@ export const store = new Vuex.Store({
       function (error) {
         console.log('Error: ' + error.code)
       })
-      playersRef.child(this.state.me + '/boardOnplay').set('')
     },
     changeturn: function (context, turn) {
-      if (this.state.statusplayer === 'positionA') {
-        shipsetRef.child(this.state.boardOnplay + '/turn').set('positionB')
+      if (context.state.statusplayer === 'positionA') {
+        shipsetRef.child(context.state.boardOnplay + '/turn').set('positionB')
         context.commit('setturn', 'positionB')
       } else {
-        shipsetRef.child(this.state.boardOnplay + '/turn').set('positionA')
+        shipsetRef.child(context.state.boardOnplay + '/turn').set('positionA')
         context.commit('setturn', 'positionA')
       }
     },
