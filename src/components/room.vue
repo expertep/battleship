@@ -55,9 +55,9 @@ export default {
     },
     startgame () {
       if (this.Players.playerB.boardOnplay || this.Players.playerA.boardOnplay) {
-        this.deleteRoom(this.roomId)
-      } else {
         this.createBoard(this.party)
+      } else {
+        this.deleteRoom(this.roomId)
       }
     },
     getout () {

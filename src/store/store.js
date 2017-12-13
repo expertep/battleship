@@ -231,6 +231,7 @@ export const store = new Vuex.Store({
   actions: {
     createBoard: function (context, obj) {
       let arr = new Array(10).fill(0).map(row => new Array(10).fill({shipstatus: false, bombstatus: false}))
+      console.log(obj.own)
       var tmp = {
         own: obj.own,
         playerB: obj.playerB,
@@ -274,14 +275,15 @@ export const store = new Vuex.Store({
     },
     outRoom: function (context, id, me) {
       roomsRef.child(id + '/playerB').once('value', function (snapshot) {
-        console.log(snapshot.val() + ' * ' + id + ' * ' + context.state.me)
         if (!snapshot.val()) {
           roomsRef.child(id).set(null)
         } else if (snapshot.val() === context.state.me) {
           roomsRef.child(id + '/playerB').set('')
+          roomsRef.child(id + '/statusB').set('Wait')
         } else {
           roomsRef.child(id + '/own').set(snapshot.val())
           roomsRef.child(id + '/playerB').set('')
+          roomsRef.child(id + '/statusB').set('Wait')
         }
         window.location.replace('#/lobby')
       },
