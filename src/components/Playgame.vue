@@ -1,5 +1,10 @@
 <template>
   <div class="hello">
+    <div v-if="user">
+      <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
+      <br>
+      <h2 class="subtitle">{{user.displayName}}</h2>
+    </div>
     <h1 class="title has-text-light">Battleship</h1>
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
     <div class="columns is-mobile">
@@ -125,11 +130,14 @@ export default {
       'score',
       'statusplayer',
       'statuscoplayer',
-      'turn'
+      'turn',
+      'me',
+      'user'
     ])
   },
   created () {
-    this.getBoard()
+    this.init()
+    // this.getBoard()
     this.getOwn()
     this.getEnemy()
     this.getScore()

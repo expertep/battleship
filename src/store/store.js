@@ -258,6 +258,7 @@ export const store = new Vuex.Store({
         }
       }
       context.commit('setstatusplayer', tmp1)
+      window.location.replace('#/placeship')
     },
     deleteRoom: function (context, id) {
       roomsRef.child(id).set(null)
@@ -271,23 +272,22 @@ export const store = new Vuex.Store({
       else tmp1 = 'Wait'
       roomsRef.child(obj.id + '/' + tmp).set(tmp1)
     },
-    deleteBoard: function (context) {
-      playersRef.child(this.state.me + '/boardOnplay').set('')
-    },
-    outRoom: function (context, id, sign) {
-      if (sign === 'A') {
-        roomsRef.child(id + '/playerA').set('')
-        roomsRef.child(id + '/playerB').on('value', function (snapshot) {
-          if (snapshot.val()) {
-            roomsRef.child(id + '/playerA').set(snapshot.val())
-          } else roomsRef.child(id).set('')
-        },
-        function (error) {
-          console.log('Error: ' + error.code)
-        })
-      } else {
-        roomsRef.child(id + '/playerB').set('')
-      }
+    outRoom: function (context, id, me) {
+      roomsRef.child(id + '/playerB').on('value', function (snapshot) {
+        console.log(snapshot.val() + ' * ' + me)
+        if (!snapshot.val()) {
+          roomsRef.child(id).set(null)
+        } else if (snapshot.val() === me) {
+          roomsRef.child(id + '/playerB').set('')
+        } else {
+          roomsRef.child(id + '/own').set(snapshot.val())
+          roomsRef.child(id + '/playerB').set('')
+        }
+        window.location.replace('#/lobby')
+      },
+      function (error) {
+        console.log('Error: ' + error.code)
+      })
     },
     loadPlayer: function (context, id) {
       var tmp = {
@@ -336,8 +336,10 @@ export const store = new Vuex.Store({
       var key = roomsRef.push(tmp).getKey()
       context.commit('setroomId', key)
     },
-    getBoard: function (context) {
+    getBoard: function (context, dispatch) {
+      // var idMe = id
       var idMe = this.state.me
+      console.log(idMe)
       playersRef.child(idMe + '/boardOnplay').on('value', function (snapshot) {
         context.commit('setboard', snapshot.val())
         shipsetRef.child(snapshot.val() + '/turn').on('value', function (snapshot2) {
@@ -362,10 +364,11 @@ export const store = new Vuex.Store({
             }
           }
           context.commit('setstatusplayer', tmp1)
+          context.dispatch('getScore')
         })
       })
     },
-    getScore: function (context, obj) {
+    getScore: function (context) {
       var tmp = {
         A: 0,
         B: 0
@@ -435,6 +438,7 @@ export const store = new Vuex.Store({
             boardOnplay: ''
           }
           commit('setKeyplayer', user.uid)
+          dispatch('getBoard')
           commit('setUser', tmp)
         } else {
           commit('setUser', null)

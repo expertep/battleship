@@ -1,6 +1,11 @@
 <template>
   <div class="hello">
     <div class="container">
+    <div v-if="user">
+      <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
+      <br>
+      <h2 class="subtitle">{{user.displayName}}</h2>
+    </div>
     <h1 class="title has-text-light">Battleship</h1>
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
     <div class="columns ">
@@ -43,9 +48,6 @@
             <div class="field is-grouped">
               <div class="control">
                 <button @click="setship()" :class="setClassdisable()">Next</button>
-              </div>
-              <div class="control">
-                <button class="button is-danger is-large" @click="convert">Cancel</button>
               </div>
             </div>
           </div>
@@ -147,14 +149,16 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'user',
       'me',
       'statusplayer',
       'Players'
     ])
   },
   created () {
+    this.init()
     this.position = this.createMap()
-    this.getBoard()
+    // this.getBoard()
   }
 }
 </script>

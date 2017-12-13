@@ -9,7 +9,7 @@
     
     <br><br><br>
     <router-link to="lobby">
-      <button class="button">LET PLAY</button>
+      <button class="button" v-if="user">LET PLAY</button>
     </router-link>
     </a>
     

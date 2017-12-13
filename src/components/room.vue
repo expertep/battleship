@@ -19,7 +19,8 @@
     </div>
     <div class="columns">
       <div class="column">
-        <input type="button " value="Play" :class="setClassplay(party.statusA,party.statusB)" @click="startgame()">
+        <input type="button" value="Play" :class="setClassplay(party.statusA,party.statusB)" @click="startgame()">
+        <input type="button" value="Back" :class="setClassback(party.statusA)" @click="getout()">
       </div>
     </div>
   </div>
@@ -36,6 +37,7 @@ export default {
   },
   methods: {
     ...mapActions([
+      'init',
       'updateparty',
       'loadPlayer',
       'outRoom',
@@ -55,10 +57,11 @@ export default {
       if (this.Players.playerB.boardOnplay || this.Players.playerA.boardOnplay) {
         this.deleteRoom(this.roomId)
       } else {
-        console.log(1)
         this.createBoard(this.party)
-        window.location.replace('#/placeship')
       }
+    },
+    getout () {
+      this.outRoom(this.roomId, this.me)
     },
     setClass (id) {
       if (this.me === id) {
@@ -69,6 +72,11 @@ export default {
       if (A === 'Ready' && B === 'Ready') {
         return 'button is-link is-center is-danger'
       } else return 'button is-link is-center is-static'
+    },
+    setClassback (id, B) {
+      /* if (this.me === id) {
+        return 'button is-link is-center'
+      } else return 'button is-link is-center is-static' */
     }
   },
   computed: {
@@ -80,6 +88,7 @@ export default {
     ])
   },
   created () {
+    this.init()
     this.roomId = this.$route.params.roomId
     this.updateparty(this.roomId)
     this.loadPlayer(this.roomId)
