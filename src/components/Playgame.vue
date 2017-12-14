@@ -1,30 +1,9 @@
 <template>
   <div class="hello">
-    <div v-if="user">
-      <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
-      <br>
-      <h2 class="subtitle">{{user.displayName}}</h2>
-    </div>
     <h1 class="title has-text-light">Battleship</h1>
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
-    <div class="columns is-mobile">
-      <div class="column is-three-fifths is-offset-one-fifth">
-        <div class="tags has-addons">
-          <span :class="setClassturn(statusplayer)">
-            <h2 class="subtitle has-text-light has-text-weight-light">
-              me {{score.A}}
-            </h2>
-            </span>
-          <span :class="setClassturn(statuscoplayer)">
-            <h2 class="subtitle has-text-light has-text-weight-light">
-              enemy {{score.B}}
-            </h2>
-          </span>
-        </div>
-      </div>
-    </div>
     <div class="columns is-mobile is-centered">
-      <div class="column is-6">
+      <div class="column is-6  is-centered">
         <h2 class="subtitle has-text-light">me</h2>
         <img v-if="Players.playerA.picture" :src="Players.playerA.picture" class="photo-url">
         <h2 class="subtitle has-text-light">{{Players.playerA.name}}</h2>
@@ -36,11 +15,11 @@
           </tr>
         </table>
       </div>
-      <div class="column is-6">
+      <div class="column is-6  is-centered">
         <h2 class="subtitle has-text-light">enemy</h2>
         <img v-if="Players.playerB.picture" :src="Players.playerB.picture" class="photo-url" alt="">
         <h2 class="subtitle has-text-light">{{Players.playerB.name}}</h2>
-        <table class="enemy">
+        <table :class="setClassturn()">
           <tr v-for="(y, indexY) in Enemysea" :key="y['.key']">
             <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY,x)" :class="setClass(x)">
               <img v-if="x.bombstatus && x.shipstatus" src="../assets/ship.png" class="img">
@@ -49,6 +28,11 @@
         </table>
       </div>
     </div>
+    <span class="alert">
+      <h1 class="title has-text-light" v-if="statuscoplayer == turn">
+        Not your turn
+      </h1>
+    </span>
     <br><br>
   <br>
   <div v-if="score.A == 16 || score.B==16" class="modal is-active">
@@ -119,11 +103,11 @@ export default {
         return ''
       }
     },
-    setClassturn (name) {
-      if (name === this.turn) {
-        return 'tag is-success'
+    setClassturn () {
+      if (this.statusplayer === this.turn) {
+        return 'enemy'
       } else {
-        return 'tag is-dark'
+        return ''
       }
     }
   },
@@ -152,6 +136,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .alert {
+    position: absolute;
+    top: 500px;
+    right: 10%;
+  }
   .photo-url {
     width: 48px;
     height: 48px;

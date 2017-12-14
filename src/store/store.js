@@ -34,8 +34,6 @@ export const store = new Vuex.Store({
       B: 0
     },
     roomId: '',
-    displayName: '',
-    photoURL: '',
     rooms: [],
     positionOwn: [
       [
@@ -229,12 +227,12 @@ export const store = new Vuex.Store({
     ...firebaseMutations
   },
   actions: {
-    createBoard: function (context, obj) {
+    createBoard: function (context) {
       let arr = new Array(10).fill(0).map(row => new Array(10).fill({shipstatus: false, bombstatus: false}))
-      console.log(obj.own)
+      console.log(context.state.party.own)
       var tmp = {
-        own: obj.own,
-        playerB: obj.playerB,
+        own: context.state.party.own,
+        playerB: context.state.party.playerB,
         positionA: arr,
         positionB: arr,
         scoreA: 0,
@@ -242,15 +240,15 @@ export const store = new Vuex.Store({
         turn: 'positionA'
       }
       var key = shipsetRef.push(tmp).getKey()
-      playersRef.child(obj.own + '/boardOnplay').set(key)
-      playersRef.child(obj.playerB + '/boardOnplay').set(key)
+      playersRef.child(context.state.party.own + '/boardOnplay').set(key)
+      playersRef.child(context.state.party.playerB + '/boardOnplay').set(key)
       var tmp1 = {
         status: 'positionA',
         score: 'scoreA',
         statusco: 'positionB',
         scoreco: 'scoreB'
       }
-      if (context.state.me !== obj.own) {
+      if (context.state.me !== context.state.party.own) {
         tmp1 = {
           status: 'positionB',
           score: 'scoreB',
@@ -272,6 +270,9 @@ export const store = new Vuex.Store({
       if (obj.str === 'Wait') tmp1 = 'Ready'
       else tmp1 = 'Wait'
       roomsRef.child(obj.id + '/' + tmp).set(tmp1)
+    },
+    resetOnboard: function (context) {
+      playersRef.child(context.state.me + '/boardOnplay').set('')
     },
     outRoom: function (context, id) {
       roomsRef.child(id + '/playerB').once('value', function (snapshot) {
