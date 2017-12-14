@@ -5,18 +5,20 @@
         <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
         <h2 class="subtitle has-text-light">{{user.name}}</h2>
       </div>
-
-      <h2 class="subtitle has-text-primary">choose room to play</h2>
+       <div style = "font-family: 'Alfa Slab One', cursive;">
+       <h3 class ="title is-4"> Login Facebook </h3>
+       </div>
+      <h2 class="subtitle has-text-primary">
+        choose room to play
+        </h2>
       <div v-for="(room, key) in rooms" :key="room['.key']">
           <button class="button is-primary" @click="setroomId(key)" v-if="!room.playerB">{{room.name}}</button>
       </div>
-      <a class="button is-light">
-        <center>
+      <div class="container">
         <router-link to="CreateRoom">
-        <input type="button " value="create room" class="button is-link">
+        <img src="../assets/createroom.png" class="img">
         </router-link>
-        </center>
-      </a>
+      </div>
       </div>
 </template>
 
