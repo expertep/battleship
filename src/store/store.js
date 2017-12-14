@@ -319,12 +319,12 @@ export const store = new Vuex.Store({
         playerA: context.state.Players.playerA,
         playerB: context.state.Players.playerB
       }
-      console.log(context.state.displayName + '-' + context.state.Players.playerB.name)
-      if (context.state.displayName === context.state.Players.playerB.name) {
+      if (context.state.user.name === context.state.Players.playerB.name) {
         tmp = {
           playerA: context.state.Players.playerB,
           playerB: context.state.Players.playerA
         }
+        console.log(tmp)
       }
       context.commit('setPlayer', tmp)
     },
