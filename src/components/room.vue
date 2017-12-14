@@ -43,7 +43,8 @@ export default {
       'outRoom',
       'deleteRoom',
       'createBoard',
-      'getstatusplayerfirebase'
+      'getstatusplayerfirebase',
+      'loadPlayerswap'
     ]),
     statusplayer (str) {
       var tmp = {
@@ -59,6 +60,7 @@ export default {
       } else {
         this.deleteRoom(this.roomId)
       }
+      this.loadPlayerswap()
     },
     getout () {
       this.outRoom(this.roomId, this.me)

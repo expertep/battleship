@@ -165,6 +165,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .photo-url {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+  }
   td{
     border:2px solid rgba(0, 204, 255, 0.5);
     width:50px;

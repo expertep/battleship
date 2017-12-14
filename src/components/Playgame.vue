@@ -26,6 +26,8 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-6">
         <h2 class="subtitle has-text-light">me</h2>
+        <img v-if="Players.playerA.picture" :src="Players.playerA.picture" class="photo-url">
+        <h2 class="subtitle has-text-light">{{Players.playerA.name}}</h2>
         <table>
           <tr v-for="(y, indexY) in Ownsea" :key="y['.key']">
             <td v-for="(x, indexX) in y" :key="x['.key']" :class="setClass(x)">
@@ -36,7 +38,9 @@
       </div>
       <div class="column is-6">
         <h2 class="subtitle has-text-light">enemy</h2>
-        <table>
+        <img v-if="Players.playerB.picture" :src="Players.playerB.picture" class="photo-url" alt="">
+        <h2 class="subtitle has-text-light">{{Players.playerB.name}}</h2>
+        <table class="enemy">
           <tr v-for="(y, indexY) in Enemysea" :key="y['.key']">
             <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY,x)" :class="setClass(x)">
               <img v-if="x.bombstatus && x.shipstatus" src="../assets/ship.png" class="img">
@@ -132,7 +136,8 @@ export default {
       'statuscoplayer',
       'turn',
       'me',
-      'user'
+      'user',
+      'Players'
     ])
   },
   created () {
@@ -147,6 +152,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .photo-url {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+  }
+  .enemy td:hover{
+    background-color: rgba(0, 204, 255, 0.5);
+  }
   td{
     border:2px solid rgba(0, 204, 255, 0.1);
     width:50px;

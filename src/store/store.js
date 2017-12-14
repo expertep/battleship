@@ -273,7 +273,7 @@ export const store = new Vuex.Store({
       else tmp1 = 'Wait'
       roomsRef.child(obj.id + '/' + tmp).set(tmp1)
     },
-    outRoom: function (context, id, me) {
+    outRoom: function (context, id) {
       roomsRef.child(id + '/playerB').once('value', function (snapshot) {
         if (!snapshot.val()) {
           roomsRef.child(id).set(null)
@@ -313,6 +313,20 @@ export const store = new Vuex.Store({
       function (error) {
         console.log('Error: ' + error.code)
       })
+    },
+    loadPlayerswap: function (context) {
+      var tmp = {
+        playerA: context.state.Players.playerA,
+        playerB: context.state.Players.playerB
+      }
+      console.log(context.state.displayName + '-' + context.state.Players.playerB.name)
+      if (context.state.displayName === context.state.Players.playerB.name) {
+        tmp = {
+          playerA: context.state.Players.playerB,
+          playerB: context.state.Players.playerA
+        }
+      }
+      context.commit('setPlayer', tmp)
     },
     joinroomfirebase: function (context, id) {
       roomsRef.child(id + '/playerB').set(context.state.me)
