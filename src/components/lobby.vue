@@ -17,7 +17,7 @@
       <div class="container">
         <br>
         <router-link to="CreateRoom">
-        <img src="../assets/create.png" class="img">
+        <img src="../assets/createroom.png" class="img">
         </router-link>
       </div>
       </div>
