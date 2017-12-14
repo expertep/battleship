@@ -35,8 +35,7 @@ export default {
   methods: {
     ...mapActions([
       'getroom',
-      'joinroomfirebase',
-      'deleteBoard'
+      'joinroomfirebase'
     ]),
     setroomId (key) {
       this.joinroomfirebase(key)
@@ -51,7 +50,6 @@ export default {
   },
   created () {
     this.getroom()
-    this.deleteBoard()
   }
 }
 </script>
