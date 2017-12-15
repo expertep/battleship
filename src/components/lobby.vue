@@ -2,24 +2,8 @@
   <div class="hello">
     <h1 class="title has-text-light">Battle Ship Game </h1>
       <div v-if="user">
-        <center>
-          <div class="box user">
-            <article class="media">
-              <div class="media-left">
-                <figure class="image is-64x64">
-                  <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
-                </figure>
-              </div>
-              <div class="media-content">
-                <div class="content">
-                  <p>
-                    <strong class="has-text-white">{{user.name}}</strong>
-                  </p>
-                </div>
-              </div>
-            </article>
-          </div>
-        </center>
+        <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
+        <h2 class="subtitle has-text-light">{{user.name}}</h2>
       </div>
        <div style = "font-family: 'Alfa Slab One', cursive;">
     
@@ -36,6 +20,7 @@
         <img src="../assets/create1.png" class="img">
         </router-link>
       </div>
+      <div><img src="../assets/shipwar.png" class="img"></div>
       </div>
 </template>
 
@@ -52,8 +37,7 @@ export default {
     ...mapActions([
       'getroom',
       'joinroomfirebase',
-      'resetOnboard',
-      'init'
+      'deleteBoard'
     ]),
     setroomId (key) {
       this.joinroomfirebase(key)
@@ -67,9 +51,8 @@ export default {
     ])
   },
   created () {
-    this.init()
     this.getroom()
-    this.resetOnboard()
+    this.deleteBoard()
   }
 }
 </script>
@@ -94,20 +77,12 @@ h3 {
     color: white;
     text-shadow: 2px 2px 2px #aaa;
 }
+
 .container {
   position: relative;
   width: 50%;
 }
-.user {
-  max-width: 300px;
-  margin: 50px;
-  border-radius: 30px;
-  border: 2px solid #125598;
-  background: rgba(37,45,56,0.7);
-}
-.content {
-  color: white;
-}
+
 .image {
   display: block;
   width: 100%;
