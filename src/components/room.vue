@@ -1,10 +1,9 @@
 <template>
   <div class="room">
     <h1 class="title has-text-light">BattleShip Game </h1>
-    <h1 class="title has-text-light">{{party.name}}</h1>
+    <h3 class="title has-text-light">{{party.name}}</h3>
     <div class="columns is-centered roomplayer">
       <div class="column" v-if="Players.playerA">
-         <h1>head</h1>
         <img v-if="Players.playerA.picture" :src="Players.playerA.picture" class="photo-url" alt="">
         <h2 class="subtitle has-text-light">{{Players.playerA.name}}</h2>
         <h2 class="subtitle has-text-primary"></h2>
@@ -19,14 +18,16 @@
     </div>
     <div class="columns">
       <div class="column">
-        <input type="button" value="Play" :class="setClassplay(party.statusA,party.statusB)" @click="startgame()">
-        <input type="button" value="Back" :class="setClassback(party.statusA)" @click="getout()">
+        <button class="play" @click="startgame()" v-if="setClassplay(party.statusA,party.statusB)"></button>
+        <button class="play1" v-else></button>
+        <button class="back" @click="getout()"></button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+// setClassplay(party.statusA,party.statusB)
 import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
@@ -71,9 +72,10 @@ export default {
       } else return 'button is-link is-center is-static'
     },
     setClassplay (A, B) {
+      console.log(5345)
       if (A === 'Ready' && B === 'Ready') {
-        return 'button is-link is-center is-danger'
-      } else return 'button is-link is-center is-static'
+        return true
+      } else return false
     },
     setClassback (id, B) {
       /* if (this.me === id) {
@@ -100,12 +102,54 @@ export default {
 
 <style scoped>
   .photo-url {
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
   }
   .roomplayer {
     padding: 100px;
   }
-
+h1{
+  font-size: 70px;
+  text-shadow: 3px 3px 3px #aaa;
+}
+h2{
+  font-size: 20px;
+  font-weight: bold;
+}
+h3{
+  font-size: 40px;
+}
+button{
+  background-color: Transparent;
+  border: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: .5s ease;
+}
+.play1{
+  background-image: url("../assets/play3.png");
+  width:122px;
+  height:42px;
+}
+.play{
+  background-image: url("../assets/play1.png");
+  width:122px;
+  height:42px;
+}
+.play:hover{
+  background-image: url("../assets/play2.png");
+  width:122px;
+  height:42px;
+}
+.back{
+  background-image: url("../assets/back1.png");
+  width:116px;
+  height:42px;
+}
+.back:hover{
+  background-image: url("../assets/back2.png");
+  width:116px;
+  height:42px;
+}
 </style>
