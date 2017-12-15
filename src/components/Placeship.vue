@@ -8,7 +8,7 @@
     </div>
     <h1 class="title has-text-light">Battleship</h1>
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
-    <div class="columns ">
+    <div class="columns">
       <div class="column">
         <div class="columns is-mobile is-centered">
           <div class="column is-narrow">

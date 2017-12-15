@@ -457,7 +457,7 @@ export const store = new Vuex.Store({
           commit('setUser', tmp)
         } else {
           commit('setUser', null)
-          // router.push('/')
+          router.push('/')
         }
       })
     },
@@ -483,8 +483,8 @@ export const store = new Vuex.Store({
     },
     logout (context) {
       firebase.auth().signOut()
-      context.user = null
-      context.me = ''
+      context.state.user = null
+      context.state.me = ''
     }
   }
 })
