@@ -33,7 +33,7 @@
             <br><br>
             <button class="logout" @click="logout()"></button>
         </div>
-        <button class="logout" @click="login()" v-if="!user"></button>
+        <button class="login" @click="login()" v-if="!user"></button>
       </div>
       <div class="column is-hidden-mobile">
       </div>
