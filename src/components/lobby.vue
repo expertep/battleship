@@ -36,7 +36,8 @@ export default {
     ...mapActions([
       'getroom',
       'joinroomfirebase',
-      'resetOnboard'
+      'resetOnboard',
+      'init'
     ]),
     setroomId (key) {
       this.joinroomfirebase(key)
@@ -50,6 +51,7 @@ export default {
     ])
   },
   created () {
+    this.init()
     this.getroom()
     this.resetOnboard()
   }

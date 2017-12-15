@@ -1,35 +1,65 @@
 <template>
   <div>
-    <div v-if="user">
-      <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
-      <br>
-      <h2 class="subtitle">{{user.displayName}}</h2>
-      <button class="button" @click="logout()">Logout</button>
-    </div>
-    
-    <br><br><br>
-    <router-link to="lobby">
-      <button class="button" v-if="user">LET PLAY</button>
-    </router-link>
-    </a>
-    
-    <div style = "font-family: 'Alfa Slab One', cursive;">
-      <h1 class= "title is-0"> Welcome </h1>
-      <img src="../assets/battleship.png" class="img">
-      <br ><br ><br ><br ><br >
-      <h3 class ="title is-4"> Login Facebook </h3>
-
-
-      <div class="container">
-        <img src="../assets/login1.png" class="img">
-        <div class="overlay">
-          <div class = "text" @click="login()" v-if="!user" >
-              <img src="../assets/login2.png" class="img">
-          </div>
-        </div>
+    <div class="columns">
+      <div class="column is-hidden-mobile">
       </div>
+      <div class="column is-8">
+        <div class="logo">
+          <img src="../assets/battleship.png">
+        </div>
+        <div v-if="user" class="">
+          <center>
+          <div class="box user">
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-64x64">
+                  <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong>{{user.name}}</strong>
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+          </center>
 
+            <span @click="play()">
+              <img src="../assets/letplay1.png" class="img">
+              <div class="overlay">
+                <div class ="text">
+                  <img src="../assets/letplay2.png" class="img">
+                </div>
+              </div>
+            </span>
+            <br><br>
+            <span @click="logout()">
+              <img src="../assets/logout1.png" class="img">
+              <div class="overlay">
+                <div class ="text">
+                    <img src="../assets/logout1.png" class="img">
+                </div>
+              </div>
+            </span>
+        </div>
+
+        <span class="" v-else @click="login()">
+          <img src="../assets/login1.png" class="img">
+            <div class="overlay">
+              <div class ="text">
+                  <img src="../assets/login2.png" class="img" >
+              </div>
+            </div>
+        </span>
+      </div>
+      <div class="column is-hidden-mobile">
+      </div>
     </div>
+
+
   </div>
 </template>
 
@@ -54,7 +84,10 @@ export default {
       'logout',
       'login',
       'init'
-    ])
+    ]),
+    play () {
+      router.push('/lobby')
+    }
   },
   created () {
     this.init()
@@ -63,6 +96,22 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  margin-bottom: 40px;
+  display: block;
+}
+.user {
+  max-width: 300px;
+  margin: 50px;
+  background: rgba(147,206,222,1);
+  background: -moz-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(147,206,222,1)), color-stop(41%, rgba(117,189,209,1)), color-stop(100%, rgba(73,165,191,1)));
+  background: -webkit-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  background: -o-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  background: -ms-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  background: linear-gradient(to right, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#49a5bf', GradientType=1 );
+}
 .photo-url {
   width: 48px;
   height: 48px;
@@ -81,12 +130,6 @@ h3 {
     color: white;
     text-shadow: 2px 2px 2px #aaa;
 }
-
-.container {
-  position: relative;
-  width: 50%;
-}
-
 .image {
   display: block;
   width: 100%;

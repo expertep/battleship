@@ -136,6 +136,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  #hello {
+    font-family: 'Pangolin', cursive;
+  }
   .alert {
     position: absolute;
     top: 500px;
