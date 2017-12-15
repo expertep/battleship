@@ -27,7 +27,7 @@
           </div>
           </center>
             <router-link to="lobby">
-              <button class="letplay" @click="CreateRoom()"></button>
+              <button class="letplay let" @click="CreateRoom()"></button>
             </router-link>
             <br><br>
             <button class="logout" @click="logout()"></button>
@@ -129,20 +129,20 @@ h3 {
 .container:hover .overlay {
   opacity: 1;
 }
-.let {
-  height:70px;
-}
 .text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.letplay{
+button{
   background-color: Transparent;
   border: none;
   background-repeat: no-repeat;
+  background-size: cover;
   transition: .5s ease;
+}
+.letplay{
   background-image: url("../assets/letplay1.png");
   width:125px;
   height:45px;
@@ -154,13 +154,9 @@ h3 {
   height:45px;
 }
 .logout{
-  background-color: Transparent;
-  border: none;
-  background-repeat: no-repeat;
-  transition: .5s ease;
   background-image: url("../assets/logout1.png");
-  width:125px;
-  height:45px;
+  width:122px;
+  height:42px;
   
 }
 .logout:hover{
