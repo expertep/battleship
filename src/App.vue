@@ -13,8 +13,9 @@ export default {
 
 <style>
 #app {
-  font-family: 'Pangolin', cursive;
-  /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
+  font-family: 'Bungee', cursive;
+  /* font-family: 'Pangolin', cursive;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -457,7 +457,7 @@ export const store = new Vuex.Store({
           commit('setUser', tmp)
         } else {
           commit('setUser', null)
-          // router.push('/')
+          router.push('/')
         }
       })
     },
