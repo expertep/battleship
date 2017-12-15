@@ -26,34 +26,34 @@
             </article>
           </div>
           </center>
-
-            <span @click="play()">
-              <img src="../assets/letplay1.png" class="img">
-              <div class="overlay">
-                <div class ="text">
-                  <img src="../assets/letplay2.png" class="img">
+            <router-link to="lobby">
+              <div class="container">
+                <img src="../assets/letplay1.png" class="img" @click="play()">
+                <div class="overlay">
+                  <div class ="text">
+                    <img src="../assets/letplay2.png" class="img">
+                  </div>
                 </div>
               </div>
-            </span>
-            <br><br>
-            <span @click="logout()">
-              <img src="../assets/logout1.png" class="img">
-              <div class="overlay">
-                <div class ="text">
-                    <img src="../assets/logout1.png" class="img">
-                </div>
-              </div>
-            </span>
-        </div>
-
-        <span class="" v-else @click="login()">
-          <img src="../assets/login1.png" class="img">
+            </router-link>
+          <div class="container">
+            <img src="../assets/logout1.png" class="img">
             <div class="overlay">
-              <div class ="text">
-                  <img src="../assets/login2.png" class="img" >
+              <div class = "text" @click="logout()">
+                  <img src="../assets/logout2.png" class="img">
               </div>
             </div>
-        </span>
+          </div>
+        </div>
+        
+        <div class="container" v-if="!user" >
+          <img src="../assets/login1.png" class="img">
+          <div class="overlay">
+            <div class = "text" @click="login()">
+                <img src="../assets/login2.png" class="img">
+            </div>
+          </div>
+        </div>
       </div>
       <div class="column is-hidden-mobile">
       </div>
@@ -86,7 +86,7 @@ export default {
       'init'
     ]),
     play () {
-      router.push('/lobby')
+      this.router.push('/lobby')
     }
   },
   created () {
