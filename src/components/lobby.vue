@@ -12,12 +12,12 @@
         choose room to play
         </h2>
       <div v-for="(room, key) in rooms" :key="room['.key']">
-        <button class="button is-primary" @click="setroomId(key)" v-if="!room.playerB">{{room.name}}</button>
+          <button class="button is-primary" @click="setroomId(key)" v-if="!room.playerB">{{room.name}}</button>
       </div>
       <div class="container">
         <br>
         <router-link to="CreateRoom">
-        <img src="../assets/createroom.png" class="img">
+        <img src="../assets/create1.png" class="img">
         </router-link>
       </div>
       </div>
@@ -36,8 +36,7 @@ export default {
     ...mapActions([
       'getroom',
       'joinroomfirebase',
-      'resetOnboard',
-      'init'
+      'deleteBoard'
     ]),
     setroomId (key) {
       this.joinroomfirebase(key)
@@ -51,9 +50,8 @@ export default {
     ])
   },
   created () {
-    this.init()
     this.getroom()
-    this.resetOnboard()
+    this.deleteBoard()
   }
 }
 </script>
