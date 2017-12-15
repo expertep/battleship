@@ -26,6 +26,7 @@
             </article>
           </div>
           </center>
+          <br><br>
             <router-link to="lobby">
               <button class="letplay let" @click="CreateRoom()"></button>
             </router-link>
@@ -117,18 +118,6 @@ h3 {
   width: 100%;
   height: auto;
 }
-.overlay {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: #008CBA;
-}
-.container:hover .overlay {
-  opacity: 1;
-}
 .text {
   position: absolute;
   top: 50%;
@@ -144,14 +133,14 @@ button{
 }
 .letplay{
   background-image: url("../assets/letplay1.png");
-  width:125px;
-  height:45px;
+  width:150px;
+  height:54px;
   
 }
 .letplay:hover{
   background-image: url("../assets/letplay2.png");
-  width:127px;
-  height:45px;
+  width:200px;
+  height:72px;
 }
 .logout{
   background-image: url("../assets/logout1.png");

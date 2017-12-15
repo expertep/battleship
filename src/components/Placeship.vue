@@ -1,11 +1,7 @@
 <template>
   <div class="hello">
     <div class="container">
-    <div v-if="user">
-      <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
-      <br>
-      <h2 class="subtitle">{{user.displayName}}</h2>
-    </div>
+
     <h1 class="title has-text-light">Battleship</h1>
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
     <div class="columns">
