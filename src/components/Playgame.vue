@@ -3,7 +3,7 @@
     <h1 class="title has-text-light">Battleship</h1>
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
     <div class="columns is-mobile is-centered">
-      <div class="column is-6 is-centered">
+      <div class="column is-6  is-centered">
         <center>
           <div class="box user">
             <article class="media">
@@ -22,21 +22,21 @@
               </div>
             </article>
           </div>
-        
-          <table>
-            <tr v-for="(y, indexY) in Ownsea" :key="y['.key']">
-              <td v-for="(x, indexX) in y" :key="x['.key']" :class="setClass(x)">
-                <div class="container">
-                  <img v-if="x.shipstatus && x.bombstatus" src="../assets/explosion.gif" class="img overlay">
-                  <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
-                </div>
-              </td>
-            </tr>
-          </table>
+
+        <table>
+          <tr v-for="(y, indexY) in Ownsea" :key="y['.key']">
+            <td v-for="(x, indexX) in y" :key="x['.key']" :class="setClass(x)">
+              <div class="contain" v-if="x.shipstatus">
+                <img v-if="x.bombstatus" src="../assets/explosion.gif" class="img overlay">
+                <img src="../assets/ship.png" class="img">
+              </div>
+            </td>
+          </tr>
+        </table>
         </center>
       </div>
-      <div class="column is-6 is-centered">
-
+      <div class="column is-6  is-centered">
+        <center>
           <div class="box user ene">
             <article class="media">
               <div class="media-left">
@@ -54,18 +54,17 @@
               </div>
             </article>
           </div>
-        <center>
-          <table :class="setClassturn()">
-            <tr v-for="(y, indexY) in Enemysea" :key="y['.key']">
-              <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY,x)" :class="setClass(x)">
-                <div class="container">
-                  <img v-if="x.shipstatus && x.bombstatus" src="../assets/explosion.gif" class="img overlay">
-                  <img v-if="x.bombstatus && x.shipstatus" src="../assets/ship.png" class="img">
+
+        <table :class="setClassturn()">
+          <tr v-for="(y, indexY) in Enemysea" :key="y['.key']">
+            <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY,x)" :class="setClass(x)">
+                <div class="contain" v-if="x.shipstatus && x.bombstatus">
+                  <img src="../assets/explosion.gif" class="img overlay">
+                  <img src="../assets/ship.png" class="img">
                 </div>
-                
-              </td>
-            </tr>
-          </table>
+            </td>
+          </tr>
+        </table>
         </center>
       </div>
     </div>
@@ -81,7 +80,7 @@
     <div class="modal-content">
       <h1 v-if="score.A == 16" class="title has-text-light">You win</h1>
       <h1 v-if="score.B == 16" class="title has-text-light">You lose</h1>
-      <button class="next" @click="finish()"></button>
+      <button class="button is-primary is-large" @click="finish()">Finish</button>
     </div>
   </div>
   </div>
@@ -112,7 +111,7 @@ export default {
       'changeturn'
     ]),
     setbomb (x, y, obj) {
-      if (this.statusplayer === this.turn && !obj.bombstatus) {
+      if (this.statusplayer === this.turn) {
         if (obj.shipstatus && !obj.bombstatus) {
           this.addScore()
         } else {
@@ -185,19 +184,19 @@ export default {
     top: 500px;
     right: 10%;
   }
-  .user {
-    max-width: 350px;
-    margin: 50px;
-    border-radius: 30px;
-    border: 2px solid #125598;
-    background: rgba(37,45,56,0.7);
-  }
-  .ene {
-    border: 2px solid #f1144b;
-  }
-  .content {
-    color: white;
-  }
+    .user {
+      max-width: 350px;
+      margin: 50px;
+      border-radius: 30px;
+      border: 2px solid #125598;
+      background: rgba(37,45,56,0.7);
+    }
+    .ene {
+      border: 2px solid #f1144b;
+    }
+    .content {
+      color: white;
+    }
   .photo-url {
     width: 48px;
     height: 48px;
@@ -207,7 +206,7 @@ export default {
     background-color: rgba(0, 204, 255, 0.5);
   }
   td{
-    border:2px solid rgba(0, 204, 255, 0.2);
+    border:2px solid rgba(0, 204, 255, 0.1);
     width:50px;
     height:50px;
   }
@@ -248,5 +247,9 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     transition: .5s ease;
+  }
+  .contain {
+    margin: 0 auto;
+    position: relative;
   }
 </style>
