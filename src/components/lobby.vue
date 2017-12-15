@@ -11,9 +11,15 @@
       <h2 class="subtitle has-text-primary">
         choose room to play
         </h2>
-      <div v-for="(room, key) in rooms" :key="room['.key']">
-          <button class="button is-primary" @click="setroomId(key)" v-if="!room.playerB">{{room.name}}</button>
-      </div>
+        <center>
+          <table class="rooms">
+            <tr v-for="(room, key) in rooms" :key="room['.key']">
+              <td @click="setroomId(key)" v-if="!room.playerB">
+                {{room.name}}
+              </td>
+            </tr>
+          </table>
+        </center>
       <div class="container">
         <br>
         <router-link to="CreateRoom">
@@ -37,7 +43,8 @@ export default {
     ...mapActions([
       'getroom',
       'joinroomfirebase',
-      'resetOnboard'
+      'resetOnboard',
+      'init'
     ]),
     setroomId (key) {
       this.joinroomfirebase(key)
@@ -51,6 +58,7 @@ export default {
     ])
   },
   created () {
+    this.init()
     this.getroom()
     this.resetOnboard()
   }
@@ -108,5 +116,13 @@ h3 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.rooms tr{
+  border-bottom: 3px solid #22bdc6;
+  color:azure;
+}
+.rooms td{
+  width: 50px;
+  text-align: center;
 }
 </style>
