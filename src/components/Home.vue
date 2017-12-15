@@ -27,8 +27,8 @@
           </div>
           </center>
           <br><br>
-            <router-link to="lobby">
-              <button class="letplay let" @click="CreateRoom()"></button>
+            <router-link to="/lobby">
+              <button class="letplay let"></button>
             </router-link>
             <br><br>
             <button class="logout" @click="logout()"></button>

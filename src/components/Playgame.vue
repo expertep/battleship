@@ -78,8 +78,9 @@
   <div v-if="score.A == 16 || score.B==16" class="modal is-active">
     <div class="modal-background"></div>
     <div class="modal-content">
-      <h1 v-if="score.A == 16" class="title has-text-light">You win</h1>
-      <h1 v-if="score.B == 16" class="title has-text-light">You lose</h1>
+      <h3 v-if="score.A == 16" class="title has-text-light">You win</h3>
+      <h3 v-if="score.B == 16" class="title has-text-light">You lose</h3>
+      <br ><br >
       <button class="next" @click="finish()"></button>
     </div>
   </div>
@@ -178,6 +179,14 @@ export default {
 <style scoped>
   #hello {
     font-family: 'Pangolin', cursive;
+  }
+  h1{
+    font-size: 60px;
+    text-shadow: 4px 4px 4px #aaa;
+  }
+  h3{
+    font-size: 70px;
+    text-shadow: 3px 3px 3px #aaa;
   }
   .alert {
     position: absolute;

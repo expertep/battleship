@@ -16,7 +16,7 @@
       </div>
       <div class="container">
         <br>
-        <router-link to="CreateRoom">
+        <router-link to="/CreateRoom">
           <button class="create"></button>
         </router-link>
         <router-link to="/">
@@ -43,7 +43,8 @@ export default {
     ...mapActions([
       'getroom',
       'joinroomfirebase',
-      'resetOnboard'
+      'resetOnboard',
+      'init'
     ]),
     setroomId (key) {
       this.joinroomfirebase(key)
@@ -57,6 +58,7 @@ export default {
     ])
   },
   created () {
+    this.init()
     this.getroom()
     this.resetOnboard()
   }

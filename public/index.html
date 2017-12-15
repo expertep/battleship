@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>battleship</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.css><script src=https://www.gstatic.com/firebasejs/4.6.2/firebase.js></script><style media=screen>body{
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>battleship</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.css><script src=https://www.gstatic.com/firebasejs/4.6.2/firebase.js></script><link href="https://fonts.googleapis.com/css?family=Pangolin" rel=stylesheet><link href="https://fonts.googleapis.com/css?family=Arvo" rel=stylesheet><style media=screen>body{
         margin:0;
         padding:0;
         font-family:"arial",heletica,sans-serif;
@@ -34,4 +34,27 @@
       @keyframes animate {
        from {background-position:0 0;}
        to {background-position: 500px 0;}
-      }</style><link href=/static/css/app.f9724dea9ee75893ac7447f83e52b68a.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=/static/js/manifest.7cbf354b45f013b398da.js></script><script type=text/javascript src=/static/js/vendor.6e36be0512151d8a5593.js></script><script type=text/javascript src=/static/js/app.2ec13716943802111138.js></script></body></html>
+      }
+      /* body {
+        margin: 0;
+        background: rgba(0, 0, 0, 0);
+      } */
+      video { 
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        min-width: 120%;
+        min-height: 120%;
+        width: auto;
+        height: auto;
+        z-index: -100;
+        transform: translateX(-50%) translateY(-50%);
+        background: hsl(201, 90%, 11%); 
+        background-size: cover;
+        transition: 1s opacity;
+      }
+
+	audio {
+		box-shadow: 2px 2px 4px 0px #006773;
+		border-radius:7px 7px 7px 7px ;
+		}</style><link href=/static/css/app.5b8d07aba7929fa59bf479f338cabc63.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=/static/js/manifest.843485673507f63a1478.js></script><script type=text/javascript src=/static/js/vendor.6e36be0512151d8a5593.js></script><script type=text/javascript src=/static/js/app.d65a7f02a6c35a9aeb16.js></script></body><audio controls autoplay style="width: 100px"><source src="https://firebasestorage.googleapis.com/v0/b/battleship-d7f88.appspot.com/o/RedAlert.mp3?alt=media&token=fda70ba3-1882-4922-8021-c2ec6da6b780" type=audio/mpeg></audio></html>

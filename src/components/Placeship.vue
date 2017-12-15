@@ -3,7 +3,7 @@
     <div class="container">
 
     <h1 class="title has-text-light">Battleship</h1>
-    <h2 class="subtitle has-text-primary">Let fun with me</h2>
+    <h2 class="subtitle has-text-primary">Let fun with me</h2><br ><br >
     <div class="columns">
       <div class="column">
         <div class="columns is-mobile is-centered">
@@ -163,6 +163,10 @@ export default {
     height: 48px;
     border-radius: 24px;
   }
+  h1{
+    font-size: 60px;
+    text-shadow: 4px 4px 4px #aaa;
+  }
   td{
     border:2px solid rgba(0, 204, 255, 0.5);
     width:50px;
@@ -272,5 +276,8 @@ export default {
     background-image: url("../assets/play3.png");
     width:150px;
     height:52px;
+  }
+  .box{
+    margin: 100px;
   }
 </style>

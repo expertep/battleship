@@ -229,7 +229,6 @@ export const store = new Vuex.Store({
   actions: {
     createBoard: function (context) {
       let arr = new Array(10).fill(0).map(row => new Array(10).fill({shipstatus: false, bombstatus: false}))
-      console.log(context.state.party.own)
       var tmp = {
         own: context.state.party.own,
         playerB: context.state.party.playerB,
@@ -325,7 +324,6 @@ export const store = new Vuex.Store({
           playerA: context.state.Players.playerB,
           playerB: context.state.Players.playerA
         }
-        console.log(tmp)
       }
       context.commit('setPlayer', tmp)
     },
