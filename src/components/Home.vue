@@ -27,24 +27,10 @@
           </div>
           </center>
             <router-link to="lobby">
-              <div class="container">
-                <img src="../assets/letplay1.png" class="img let">
-                <div class="overlay">
-                  <div class ="text">
-                    <img src="../assets/letplay2.png" class="img let">
-                  </div>
-                </div>
-              </div>
+              <button class="letplay" @click="CreateRoom()"></button>
             </router-link>
             <br><br>
-          <div class="container">
-            <img src="../assets/logout1.png" class="img">
-            <div class="overlay">
-              <div class = "text" @click="logout()">
-                  <img src="../assets/logout2.png" class="img">
-              </div>
-            </div>
-          </div>
+            <button class="logout" @click="logout()"></button>
         </div>
         
         <div class="container" v-if="!user" >
@@ -151,5 +137,35 @@ h3 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.letplay{
+  background-color: Transparent;
+  border: none;
+  background-repeat: no-repeat;
+  transition: .5s ease;
+  background-image: url("../assets/letplay1.png");
+  width:125px;
+  height:45px;
+  
+}
+.letplay:hover{
+  background-image: url("../assets/letplay2.png");
+  width:127px;
+  height:45px;
+}
+.logout{
+  background-color: Transparent;
+  border: none;
+  background-repeat: no-repeat;
+  transition: .5s ease;
+  background-image: url("../assets/logout1.png");
+  width:125px;
+  height:45px;
+  
+}
+.logout:hover{
+  background-image: url("../assets/logout2.png");
+  width:127px;
+  height:45px;
 }
 </style>

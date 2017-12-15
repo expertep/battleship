@@ -74,9 +74,14 @@ export default {
   margin-top:15%;
 }
 .ok{
+  background-color: Transparent;
+  border: none;
+  background-repeat: no-repeat;
+  transition: .5s ease;
   background-image: url("../assets/confirm1.png");
   width:125px;
   height:45px;
+  
 }
 .ok:hover{
   background-image: url("../assets/confirm2.png");
@@ -84,6 +89,10 @@ export default {
   height:45px;
 }
 .can{
+  background-color: Transparent;
+  border: none;
+  background-repeat: no-repeat;
+  transition: .5s ease;
   background-image: url("../assets/cancel1.png");
   width:125px;
   height:45px;

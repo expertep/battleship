@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Placeship from '@/components/Placeship'
 import Playgame from '@/components/Playgame'
-import Profile from '@/components/Profile'
 import lobby from '@/components/lobby'
 import room from '@/components/room'
 import CreateRoom from '@/components/CreateRoom'
@@ -15,11 +14,6 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
-    },
-    {
-      path: '/profile/:uid',
-      name: 'Profile',
-      component: Profile
     },
     {
       path: '/lobby',
