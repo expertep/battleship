@@ -5,7 +5,7 @@
     </div>
     <div class="column">
     <div class="field">
-        <h1><label class="label"><font face="Alfa Slab One">Create</font><font face="Algerian" class="room">Room</font>
+        <h1><label class="label"><font face="Alfa Slab One">Create</font><font face="Alfa Slab One" class="room">Room</font>
           <img src="http://download.seaicons.com/icons/unclebob/spanish-travel/1024/ship-icon.png" alt="" >
         </label>
         </h1>
