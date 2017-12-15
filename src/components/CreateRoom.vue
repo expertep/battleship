@@ -5,7 +5,7 @@
     </div>
     <div class="column">
     <div class="field">
-        <h1><label class="label"><font face="Algerian">Create</font><font face="Algerian" color="blue" class="room">Room</font>
+        <h1><label class="label"><font face="Alfa Slab One">Create</font><font face="Algerian" class="room">Room</font>
           <img src="http://download.seaicons.com/icons/unclebob/spanish-travel/1024/ship-icon.png" alt="" >
         </label>
         </h1>
@@ -30,7 +30,9 @@
     <div class="column">
     </div>
   </div>
-
+ <div class="boat">
+      <img src="../assets/boatship.png" alt="" width="600px">
+    </div>
   </div>
 </template>
 
@@ -68,7 +70,9 @@ export default {
 .label{
   color:white;
   font-size: 50px;
-  font-family: 'Designil Font', 'Helvetica', sans-serif;	
+  font-family: 'Designil Font', 'Helvetica', sans-serif;
+  position:inherit;	
+  text-shadow: 5px 5px 5px #aaa;
 }
 .columns{
   margin-top:15%;
@@ -104,6 +108,11 @@ img{
    border-radius: 60px;
 }
 .room{
-  text-shadow: 3px 3px 5px #777
+  text-shadow: 2px 2px 2px #aaa;
+}
+.boat{
+}
+.boat > img {
+  width: 60%;
 }
 </style>
