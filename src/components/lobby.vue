@@ -11,21 +11,21 @@
       <h2 class="subtitle has-text-primary">
         choose room to play
         </h2>
-        <center>
-          <table class="rooms">
-            <tr v-for="(room, key) in rooms" :key="room['.key']">
-              <td @click="setroomId(key)" v-if="!room.playerB">
-                {{room.name}}
-              </td>
-            </tr>
-          </table>
-        </center>
+      <div v-for="(room, key) in rooms" :key="room['.key']">
+          <button class="button is-primary" @click="setroomId(key)" v-if="!room.playerB">{{room.name}}</button>
+      </div>
       <div class="container">
         <br>
         <router-link to="CreateRoom">
-        <img src="../assets/create1.png" class="img">
+          <button class="create"></button>
+        </router-link>
+        <router-link to="/">
+          <button class="back" @click="getout()"></button>
         </router-link>
       </div>
+
+
+
       <div><img src="../assets/shipwar.png" class="img"></div>
       </div>
 </template>
@@ -43,8 +43,7 @@ export default {
     ...mapActions([
       'getroom',
       'joinroomfirebase',
-      'resetOnboard',
-      'init'
+      'resetOnboard'
     ]),
     setroomId (key) {
       this.joinroomfirebase(key)
@@ -58,7 +57,6 @@ export default {
     ])
   },
   created () {
-    this.init()
     this.getroom()
     this.resetOnboard()
   }
@@ -85,7 +83,13 @@ h3 {
     color: white;
     text-shadow: 2px 2px 2px #aaa;
 }
-
+button{
+  background-color: Transparent;
+  border: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: .5s ease;
+}
 .container {
   position: relative;
   width: 50%;
@@ -117,12 +121,24 @@ h3 {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.rooms tr{
-  border-bottom: 3px solid #22bdc6;
-  color:azure;
+.create{
+  background-image: url("../assets/create1.png");
+  width:146px;
+  height:40px;
 }
-.rooms td{
-  width: 50px;
-  text-align: center;
+.create:hover{
+  background-image: url("../assets/createroom.png");
+  width:116px;
+  height:42px;
+}
+.back{
+  background-image: url("../assets/back1.png");
+  width:116px;
+  height:42px;
+}
+.back:hover{
+  background-image: url("../assets/back2.png");
+  width:116px;
+  height:42px;
 }
 </style>
