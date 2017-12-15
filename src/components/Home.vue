@@ -33,15 +33,7 @@
             <br><br>
             <button class="logout" @click="logout()"></button>
         </div>
-        
-        <div class="container" v-if="!user" >
-          <img src="../assets/login1.png" class="img">
-          <div class="overlay">
-            <div class = "text" @click="login()">
-                <img src="../assets/login2.png" class="img">
-            </div>
-          </div>
-        </div>
+        <button class="logout" @click="login()" v-if="!user"></button>
       </div>
       <div class="column is-hidden-mobile">
       </div>
@@ -152,5 +144,15 @@ button{
   background-image: url("../assets/logout2.png");
   width:127px;
   height:45px;
+}
+.login{
+  background-image: url("../assets/login1.png");
+  width:150px;
+  height:54px;
+}
+.login:hover{
+  background-image: url("../assets/login2.png");
+  width:200px;
+  height:72px;
 }
 </style>

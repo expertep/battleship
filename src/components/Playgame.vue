@@ -4,6 +4,22 @@
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
     <div class="columns is-mobile is-centered">
       <div class="column is-6 is-centered">
+          <div class="box user">
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-64x64">
+                  <img v-if="Players.playerA.picture" :src="Players.playerA.picture" class="photo-url">
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong class="has-text-white">{{user.name}}</strong>
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
         <h2 class="subtitle has-text-light">me</h2>
         <img v-if="Players.playerA.picture" :src="Players.playerA.picture" class="photo-url">
         <h2 class="subtitle has-text-light">{{Players.playerA.name}}</h2>
@@ -140,6 +156,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .user {
+    max-width: 300px;
+    margin: 50px;
+    border-radius: 30px;
+    border: 2px solid #125598;
+    background: rgba(37,45,56,0.7);
+  }
+  .content {
+    color: white;
+  }
   #hello {
     font-family: 'Pangolin', cursive;
   }
