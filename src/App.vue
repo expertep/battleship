@@ -13,7 +13,8 @@ export default {
 
 <style>
 #app {
-  font-family: 'Bungee', cursive;
+  /*font-family: 'Bungee', cursive; */
+  font-family: 'Arvo', serif;
   /* font-family: 'Pangolin', cursive;
   font-family: 'Avenir', Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;

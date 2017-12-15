@@ -3,29 +3,33 @@
     <h1 class="title has-text-light">Battleship</h1>
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
     <div class="columns is-mobile is-centered">
-      <div class="column is-6  is-centered">
+      <div class="column is-6 is-centered">
         <h2 class="subtitle has-text-light">me</h2>
         <img v-if="Players.playerA.picture" :src="Players.playerA.picture" class="photo-url">
         <h2 class="subtitle has-text-light">{{Players.playerA.name}}</h2>
-        <table>
-          <tr v-for="(y, indexY) in Ownsea" :key="y['.key']">
-            <td v-for="(x, indexX) in y" :key="x['.key']" :class="setClass(x)">
-              <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
-            </td>
-          </tr>
-        </table>
+        <center>
+          <table>
+            <tr v-for="(y, indexY) in Ownsea" :key="y['.key']">
+              <td v-for="(x, indexX) in y" :key="x['.key']" :class="setClass(x)">
+                <img v-if="x.shipstatus" src="../assets/ship.png" class="img">
+              </td>
+            </tr>
+          </table>
+        </center>
       </div>
-      <div class="column is-6  is-centered">
+      <div class="column is-6 is-centered">
         <h2 class="subtitle has-text-light">enemy</h2>
         <img v-if="Players.playerB.picture" :src="Players.playerB.picture" class="photo-url" alt="">
         <h2 class="subtitle has-text-light">{{Players.playerB.name}}</h2>
-        <table :class="setClassturn()">
-          <tr v-for="(y, indexY) in Enemysea" :key="y['.key']">
-            <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY,x)" :class="setClass(x)">
-              <img v-if="x.bombstatus && x.shipstatus" src="../assets/ship.png" class="img">
-            </td>
-          </tr>
-        </table>
+        <center>
+          <table :class="setClassturn()">
+            <tr v-for="(y, indexY) in Enemysea" :key="y['.key']">
+              <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY,x)" :class="setClass(x)">
+                <img v-if="x.bombstatus && x.shipstatus" src="../assets/ship.png" class="img">
+              </td>
+            </tr>
+          </table>
+        </center>
       </div>
     </div>
     <span class="alert">
@@ -153,7 +157,7 @@ export default {
     background-color: rgba(0, 204, 255, 0.5);
   }
   td{
-    border:2px solid rgba(0, 204, 255, 0.1);
+    border:2px solid rgba(0, 204, 255, 0.2);
     width:50px;
     height:50px;
   }

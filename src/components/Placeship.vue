@@ -1,14 +1,10 @@
 <template>
   <div class="hello">
     <div class="container">
-    <div v-if="user">
-      <img :src="user.fb && user.fb.photoURL" class="photo-url" alt="">
-      <br>
-      <h2 class="subtitle">{{user.displayName}}</h2>
-    </div>
+
     <h1 class="title has-text-light">Battleship</h1>
     <h2 class="subtitle has-text-primary">Let fun with me</h2>
-    <div class="columns ">
+    <div class="columns">
       <div class="column">
         <div class="columns is-mobile is-centered">
           <div class="column is-narrow">
@@ -45,11 +41,8 @@
             </div>
           </div>
           <div class="columns is-mobile is-centered">
-            <div class="field is-grouped">
-              <div class="control">
-                <button @click="setship()" :class="setClassdisable()">Next</button>
-              </div>
-            </div>
+            <button class="play" @click="setship()" v-if="setClassdisable()"></button>
+            <button class="play1" v-else></button>
           </div>
         </div>
       </div>
@@ -143,8 +136,8 @@ export default {
     },
     setClassdisable () {
       if (this.hidemenu[0] || this.hidemenu[1] || this.hidemenu[2]) {
-        return 'button is-primary is-large is-static'
-      } else return 'button is-primary is-large'
+        return false
+      } else return true
     }
   },
   computed: {
@@ -257,5 +250,27 @@ export default {
   } */
   .control {
     margin: 3px;
+  }
+  button{
+    background-color: Transparent;
+    border: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: .5s ease;
+  }
+  .play{
+    background-image: url("../assets/play1.png");
+    width:150px;
+    height:52px;
+  }
+  .play:hover{
+    background-image: url("../assets/play2.png");
+    width:200px;
+    height:69px;
+  }
+  .play1{
+    background-image: url("../assets/play3.png");
+    width:150px;
+    height:52px;
   }
 </style>

@@ -26,34 +26,14 @@
             </article>
           </div>
           </center>
+          <br><br>
             <router-link to="lobby">
-              <div class="container">
-                <img src="../assets/letplay1.png" class="img">
-                <div class="overlay">
-                  <div class ="text">
-                    <img src="../assets/letplay2.png" class="img">
-                  </div>
-                </div>
-              </div>
+              <button class="letplay let" @click="CreateRoom()"></button>
             </router-link>
-          <div class="container">
-            <img src="../assets/logout1.png" class="img">
-            <div class="overlay">
-              <div class = "text" @click="logout()">
-                  <img src="../assets/logout2.png" class="img">
-              </div>
-            </div>
-          </div>
+            <br><br>
+            <button class="logout" @click="logout()"></button>
         </div>
-        
-        <div class="container" v-if="!user" >
-          <img src="../assets/login1.png" class="img">
-          <div class="overlay">
-            <div class = "text" @click="login()">
-                <img src="../assets/login2.png" class="img">
-            </div>
-          </div>
-        </div>
+        <button class="login" @click="login()" v-if="!user"></button>
       </div>
       <div class="column is-hidden-mobile">
       </div>
@@ -130,25 +110,49 @@ h3 {
   width: 100%;
   height: auto;
 }
-
-.overlay {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: #008CBA;
-}
-
-.container:hover .overlay {
-  opacity: 1;
-}
-
 .text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+button{
+  background-color: Transparent;
+  border: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: .5s ease;
+}
+.letplay{
+  background-image: url("../assets/letplay1.png");
+  width:150px;
+  height:54px;
+  
+}
+.letplay:hover{
+  background-image: url("../assets/letplay2.png");
+  width:200px;
+  height:72px;
+}
+.logout{
+  background-image: url("../assets/logout1.png");
+  width:122px;
+  height:42px;
+  
+}
+.logout:hover{
+  background-image: url("../assets/logout2.png");
+  width:127px;
+  height:45px;
+}
+.login{
+  background-image: url("../assets/login1.png");
+  width:150px;
+  height:54px;
+}
+.login:hover{
+  background-image: url("../assets/login2.png");
+  width:200px;
+  height:72px;
 }
 </style>

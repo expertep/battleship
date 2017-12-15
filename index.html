@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>battleship</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.css">
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
     <style media="screen">
       /* body{
         margin:0;
@@ -64,14 +64,24 @@
         background-size: cover;
         transition: 1s opacity;
       }
+
+	audio {
+		box-shadow: 2px 2px 4px 0px #006773;
+		border-radius:7px 7px 7px 7px ;
+		}
     </style>
   </head>
   <body>
+	
       <video poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg" id="bgvid" playsinline autoplay muted loop>
         <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
         <source src="src/assets/bg.mp4" type="video/webm">
       </video>
     <div id="app">
     </div>
+
   </body>
+<audio controls autoplay style="width: 100px;">
+  <source src="RedAlert.mp3" type="audio/mpeg">
+</audio>
 </html>

@@ -67,6 +67,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+button{
+  background-color: Transparent;
+  border: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: .5s ease;
+}
 .label{
   color:white;
   font-size: 50px;
@@ -79,8 +86,9 @@ export default {
 }
 .ok{
   background-image: url("../assets/confirm1.png");
-  width:125px;
+  width:127px;
   height:45px;
+  
 }
 .ok:hover{
   background-image: url("../assets/confirm2.png");
@@ -89,7 +97,7 @@ export default {
 }
 .can{
   background-image: url("../assets/cancel1.png");
-  width:125px;
+  width:127px;
   height:45px;
 }
 .can:hover{
