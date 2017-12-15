@@ -28,14 +28,15 @@
           </center>
             <router-link to="lobby">
               <div class="container">
-                <img src="../assets/letplay1.png" class="img">
+                <img src="../assets/letplay1.png" class="img let">
                 <div class="overlay">
                   <div class ="text">
-                    <img src="../assets/letplay2.png" class="img">
+                    <img src="../assets/letplay2.png" class="img let">
                   </div>
                 </div>
               </div>
             </router-link>
+            <br><br>
           <div class="container">
             <img src="../assets/logout1.png" class="img">
             <div class="overlay">
@@ -130,7 +131,6 @@ h3 {
   width: 100%;
   height: auto;
 }
-
 .overlay {
   top: 0;
   bottom: 0;
@@ -140,11 +140,12 @@ h3 {
   transition: .5s ease;
   background-color: #008CBA;
 }
-
 .container:hover .overlay {
   opacity: 1;
 }
-
+.let {
+  height:70px;
+}
 .text {
   position: absolute;
   top: 50%;

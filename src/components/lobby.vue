@@ -52,7 +52,7 @@ export default {
     ...mapActions([
       'getroom',
       'joinroomfirebase',
-      'deleteBoard',
+      'resetOnboard',
       'init'
     ]),
     setroomId (key) {
@@ -69,7 +69,7 @@ export default {
   created () {
     this.init()
     this.getroom()
-    this.deleteBoard()
+    this.resetOnboard()
   }
 }
 </script>
