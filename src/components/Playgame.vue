@@ -80,7 +80,7 @@
     <div class="modal-content">
       <h1 v-if="score.A == 16" class="title has-text-light">You win</h1>
       <h1 v-if="score.B == 16" class="title has-text-light">You lose</h1>
-      <button class="button is-primary is-large" @click="finish()">Finish</button>
+      <button class="next" @click="finish()"></button>
     </div>
   </div>
   </div>
@@ -251,5 +251,15 @@ export default {
   .contain {
     margin: 0 auto;
     position: relative;
+  }
+    .next{
+    background-image: url("../assets/next1.png");
+    width:150px;
+    height:52px;
+  }
+  .next:hover{
+    background-image: url("../assets/next2.png");
+    width:200px;
+    height:69px;
   }
 </style>
