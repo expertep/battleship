@@ -106,10 +106,6 @@ export default {
       this.x = 0
       this.y = 0
     },
-    convert () {
-      var jsonString = JSON.stringify(this.position)
-      console.log(jsonString)
-    },
     setship () {
       for (let y = 0; y < 10; y++) {
         for (let x = 0; x < 10; x++) {

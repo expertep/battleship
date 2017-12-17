@@ -55,7 +55,7 @@
             </article>
           </div>
 
-        <table :class="setClassturn()">
+        <table :class="setClassturn()" v-if="Count >= 2">
           <tr v-for="(y, indexY) in Enemysea" :key="y['.key']">
             <td v-for="(x, indexX) in y" :key="x['.key']" @click="setbomb(indexX,indexY,x)" :class="setClass(x)">
                 <div class="contain" v-if="x.shipstatus && x.bombstatus">
@@ -112,7 +112,7 @@ export default {
       'changeturn'
     ]),
     setbomb (x, y, obj) {
-      if (this.statusplayer === this.turn) {
+      if (this.statusplayer === this.turn && !obj.bombstatus) {
         if (obj.shipstatus && !obj.bombstatus) {
           this.addScore()
         } else {
@@ -162,7 +162,8 @@ export default {
       'turn',
       'me',
       'user',
-      'Players'
+      'Players',
+      'Count'
     ])
   },
   created () {
@@ -171,6 +172,7 @@ export default {
     this.getOwn()
     this.getEnemy()
     this.getScore()
+    this.changeturn()
   }
 }
 </script>
